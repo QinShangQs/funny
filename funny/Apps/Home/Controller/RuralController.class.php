@@ -9,8 +9,6 @@ class RuralController extends Controller {
 		$this->display ();
 	}
 	public function builderText($text, $number, $case) {
-		header ( "Content-type: image/png" );
-		
 		$x = 10;
 		$y = 61;
 		switch ($case) {
@@ -82,13 +80,12 @@ class RuralController extends Controller {
 		$config = array (
 				'text' => $text,
 				'size' => $size,
-				'pad' => 80,
 				'red' => 207, // 文字颜色
 				'grn' => 197,
 				'blu' => 204,
-				'bg_red' => 255, // 背景颜色
-				'bg_grn' => 255,
-				'bg_blu' => 255,
+				'bg_red' => 0, // 背景颜色
+				'bg_grn' => 0,
+				'bg_blu' => 0,
 				'x' => 12,
 				'y' => $y 
 		);

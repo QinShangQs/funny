@@ -5,8 +5,6 @@ class TextImage {
 			'text' => 'undefined', // 默认文字.
 			'size' => 14, // 字体大小
 			'rot' => 0, // 旋转角度.
-			'pad' => 0, // 填充.
-			'transparent' => 1, // 文字透明度.
 			'red' => 66, // 文字颜色
 			'grn' => 51,
 			'blu' => 113,
@@ -14,7 +12,9 @@ class TextImage {
 			'bg_grn' => 255,
 			'bg_blu' => 255,
 			'x' => 0,
-			'y' => 0 
+			'y' => 0,
+			'width' => 400,
+			'height' => 140 
 	);
 	// 初始化
 	public function __construct($param = array()) {
@@ -25,61 +25,16 @@ class TextImage {
 		}
 	}
 	static public function draw() {
-		$width = 0;
-		$height = 0;
-		$offset_x = 0;
-		$offset_y = 0;
-		$bounds = array ();
-		$image = "";
-		// 确定文字高度.
-		$bounds = imagettfbbox ( self::$param ['size'], self::$param ['rot'], self::$param ['font'], "W" );
-		switch (true) {
-			case self::$param ['rot'] < 0 :
-				$font_height = abs ( $bounds [7] - $bounds [1] );
-				break;
-			case self::$param ['rot'] > 0 :
-				$font_height = abs ( $bounds [1] - $bounds [7] );
-				break;
-			default :
-				$font_height = abs ( $bounds [7] - $bounds [1] );
-		}
-		// 确定边框高度.
-		$bounds = imagettfbbox ( self::$param ['size'], self::$param ['rot'], self::$param ['font'], self::$param ['text'] );
-		switch (true) {
-			case self::$param ['rot'] < 0 :
-				$width = abs ( $bounds [4] - $bounds [0] );
-				$height = abs ( $bounds [3] - $bounds [7] );
-				$offset_y = $font_height;
-				$offset_x = 0;
-				break;
-			case self::$param ['rot'] > 0 :
-				$width = abs ( $bounds [2] - $bounds [6] );
-				$height = abs ( $bounds [1] - $bounds [5] );
-				$offset_y = abs ( $bounds [7] - $bounds [5] ) + $font_height;
-				$offset_x = abs ( $bounds [0] - $bounds [6] );
-				break;
-			default :
-				$width = abs ( $bounds [4] - $bounds [6] );
-				$height = abs ( $bounds [7] - $bounds [1] );
-				$offset_y = $font_height;
-				;
-				$offset_x = 0;
-		}
-
-		$image = imagecreate ( $width + (self::$param ['pad'] * 2) + 1, $height + (self::$param ['pad'] * 2) + 1 );
+		$width = self::$param ['width'];
+		$height = self::$param ['height'];
+		;
+		$image = imagecreatetruecolor ( $width, $height ); // 创建400 30像素大小的画布
+		$grey = imagecolorallocate ( $image, self::$param ['red'], self::$param ['grn'], self::$param ['blu'] );
 		$background = imagecolorallocate ( $image, self::$param ['bg_red'], self::$param ['bg_grn'], self::$param ['bg_blu'] );
-		$foreground = imagecolorallocate ( $image, self::$param ['red'], self::$param ['grn'], self::$param ['blu'] );
-
-		if (self::$param ['transparent'])
-			imagecolortransparent ( $image, $background );
-		imageinterlace ( $image, false );
-		
-		$x = self::$param ['x'] > 0 ? self::$param ['x'] : ($offset_x + self::$param ['pad']);
-		$y = self::$param ['y'] > 0 ? self::$param ['y'] : ($offset_y + self::$param ['pad']);
-		
-		// 画图.
-		imagettftext ( $image, self::$param ['size'], self::$param ['rot'], $x, $y, $foreground, self::$param ['font'], self::$param ['text'] );
-		// 输出为png格式.
+		imagecolortransparent ( $image, $background );
+		imagefill ( $image, 0, 0, $background );
+		imagettftext ( $image, self::$param ['size'], self::$param ['rot'], self::$param ['x'], self::$param ['y'], $grey, self::$param ['font'], self::$param ['text'] ); // 输出一个灰色的字符串作为阴影
+		header ( "Content-type: image/png" );
 		imagepng ( $image );
 	}
 }

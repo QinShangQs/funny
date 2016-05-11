@@ -18,7 +18,7 @@ class ApiController extends Controller {
 		if (! file_exists ( $file_dir )) {
 			mkdir ( $file_dir, 0777, true );
 		}
-		$file_name = $key . '.png';
+		$file_name = $key . '.jpeg';
 		$file = $file_dir . $file_name;
 		$success = file_put_contents ( $file, $data );
 		$result = array (
