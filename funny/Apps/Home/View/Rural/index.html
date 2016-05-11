@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)http://www.h5inav.com/index.php/home/funny/play/name/rural -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1">
+<title>农村广告牌</title>
+<link rel="stylesheet" href="__PUBLIC__/rural/main.css">
+<script src="__PUBLIC__/js/jqueryv2.0.min.js" type="text/javascript"
+	charset="utf-8"></script>
+<script src="__PUBLIC__/js/config.js" type="text/javascript"
+	charset="utf-8"></script>
+</head>
+<body>
+	<div id="inputbox" class="mainbox" style="height: 838px;">
+		<img id="bgimg" class="bgimg" src="__PUBLIC__/rural/bg.jpg">
+		<div id="page1" class="box active">
+			<img class="title" src="__PUBLIC__/rural/title.png"> <input
+				id="input" class="input" placeholder="点击输入你想搞怪的人名" type="text"
+				maxlength="4"> <img id="submitbtn" class="start"
+				src="__PUBLIC__/rural/button.png">
+		</div>
+		<div id="page2" class="box ">
+			<img id="loading" class="loading" src="__PUBLIC__/rural/rotate.png">
+			<p id="loading-text" class="loading-text">正在生成</p>
+		</div>
+		<div id="page3" class="box">
+			<img id="result" class="result" src="">
+			<div class="btnbox">
+				<img id="tips" class="tips" src="__PUBLIC__/rural/tip.png"> <img
+					id="btn-back" class="btn-back" src="__PUBLIC__/rural/back.png">
+				<img id="btn-share" class="btn-share"
+					src="__PUBLIC__/rural/share.png">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var page1 = document.getElementById('page1'), page2 = document
+				.getElementById('page2'), page3 = document
+				.getElementById('page3');
+		var submitBtn = document.getElementById('submitbtn');
+
+		var shareBtn = document.getElementById('btn-share');
+		var resultImg = document.getElementById('result');
+
+		var imgBg1 = "__PUBLIC__/rural/result1.jpg?v=1.0";
+		var imgBg2 = "__PUBLIC__/rural/fucen.png?v=1.0";
+		var imgPath = "__PUBLIC__/rural/ad/";
+
+		var imgBgLocal1 = "__PUBLIC__/rural/result1.jpg?v=1.0";
+		var imgBgLocal2 = "__PUBLIC__/rural/fucen.png?v=1.0";
+		var imgPathLocal = "__PUBLIC__/rural/ad/";
+
+		var imgName = "{:U('rural/builderText/')}".replace('builderText.html',
+				'builderText');
+		var qnToken = "<php>echo  time();</php>";
+		var qiniupath = funnyConfig.uploadPath;
+
+		var _host = "http://" + window.location.host;
+		var shareTitle = "村里的广告墙都被我承包了，想上找我！";
+	</script>
+
+	<script src="__PUBLIC__/rural/qiniu.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="__PUBLIC__/rural/main.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script>
+		(function() {
+			if (typeof (WeixinJSBridge) == "undefined") {
+				document.addEventListener("WeixinJSBridgeReady", function(e) {
+					setTimeout(function() {
+						WeixinJSBridge.invoke('setFontSizeCallback', {
+							"fontSize" : 0
+						}, function(res) {
+							// alert(JSON.stringify(res));
+						});
+					}, 0);
+				});
+			} else {
+				setTimeout(function() {
+					WeixinJSBridge.invoke('setFontSizeCallback', {
+						"fontSize" : 0
+					}, function(res) {
+						// alert(JSON.stringify(res));
+					});
+				}, 0);
+			}
+		})();
+		
+		function shareToplatform(imgUrl) {
+			sharetipAni();
+	    }
+	</script>
+
+
+</body>
+</html>
