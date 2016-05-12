@@ -5,16 +5,25 @@ namespace Home\Controller;
 use Think\Controller;
 
 class ApiController extends Controller {
+	private $dir = '';
+	private $dirSizeLimit = 10;
+	public function __construct() {
+		parent::__construct ();
+		$this->dir = C ( 'IMAGE_PATH' );
+		$this->dirSizeLimit = C ( 'IMAGE_SIZE_LIMIT' );
+	}
 	public function index() {
 		$this->display ();
 	}
 	public function save($key) {
+		$this->clearImages();
+		
 		$img = trim ( $_POST ['pic'] );
 		$img = str_replace ( 'data:image/jpeg;base64,', '', $img );
 		$img = str_replace ( ' ', '+', $img );
 		$data = base64_decode ( $img );
-		$file_path = '/funny/' . date ( 'Y-m-d' ) . '/';
-		$file_dir = C ( 'IMAGE_PATH' ) . $file_path;
+		$file_path = date ( 'Y-m-d' ) . '/';
+		$file_dir = $this->dir . $file_path;
 		if (! file_exists ( $file_dir )) {
 			mkdir ( $file_dir, 0777, true );
 		}
@@ -30,6 +39,17 @@ class ApiController extends Controller {
 			$result ['path'] = $file_path . $file_name;
 		}
 		$this->ajaxReturn ( $result );
+	}
+	private function clearImages() {
+		$fileSize = getDirSize ( $this->dir );
+		if ($fileSize > intval($this->dirSizeLimit) * 1024 * 1024) {
+			deldir ( $this->dir );
+		}
+	}
+	public function dir() {
+		$fileSize = getDirSize ( $this->dir );
+		echo $fileSize . "<br/>";
+		echo getRealSize ( $fileSize );
 	}
 }
 
