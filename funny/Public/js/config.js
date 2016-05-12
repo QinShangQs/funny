@@ -1,8 +1,13 @@
 
 var funnyConfig = {
-		up2QiniuUrl: "http://192.168.2.103/funny/funny/index.php/home/api/save?key=",
-		uploadPath:"http://192.168.2.103/funny/funny/Uploads/funny/"
+		up2QiniuUrl: "http://192.168.12.119/funny/funny/index.php/home/api/save?key=",
+		uploadPath:"http://192.168.12.119/funny/funny/Uploads/funny/"
 }
+
+//var funnyConfig = {
+//		up2QiniuUrl: "http://m.xiancheling.com/index.php/home/api/save?key=",
+//		uploadPath:"http://m.xiancheling.com/Uploads/funny/"
+//}
 //$.ajaxSetup({
 //    async: false
 //});
