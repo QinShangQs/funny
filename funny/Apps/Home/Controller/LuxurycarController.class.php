@@ -34,9 +34,9 @@ class LuxurycarController extends Controller {
 				'red' => 55, // 文字颜色
 				'grn' => 55,
 				'blu' => 55,
-				'bg_red' => 198, // 背景颜色
-				'bg_grn' => 200,
-				'bg_blu' => 196,
+				'bg_red' => 213, // 背景颜色
+				'bg_grn' => 212,
+				'bg_blu' => 209,
 				'x' => 0,
 				'y' => 30,
 				'rot' => 3,
