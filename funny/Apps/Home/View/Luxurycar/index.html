@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>豪车订单生成器</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="__PUBLIC__/luxurycar/swiper.min.css">
+<link rel="stylesheet" href="__PUBLIC__/luxurycar/style.css">
+<script src="__PUBLIC__/js/jqueryv2.0.min.js" type="text/javascript"
+	charset="utf-8"></script>
+<script src="__PUBLIC__/js/config.js" type="text/javascript"
+	charset="utf-8"></script>
+</head>
+
+<body style="display: block;">
+	<div
+		class="swiper-container parent swiper-container-vertical swiper-container-android">
+		<div class="swiper-wrapper">
+
+			<section
+				class="swiper-slide swiper-no-swiping home-panel swiper-slide-active"
+				style="height: 640px;">
+				<img src="__PUBLIC__/luxurycar/bg.jpg" class="bg"> <img
+					src="__PUBLIC__/luxurycar/title.png" class="title">
+				<div class="icons">
+					<img src="__PUBLIC__/luxurycar/1.png"> <img
+						src="__PUBLIC__/luxurycar/2.png"> <img
+						src="__PUBLIC__/luxurycar/3.png"> <img
+						src="__PUBLIC__/luxurycar/4.png"> <img
+						src="__PUBLIC__/luxurycar/5.png"> <img
+						src="__PUBLIC__/luxurycar/6.png"> <img
+						src="__PUBLIC__/luxurycar/7.png"> <img
+						src="__PUBLIC__/luxurycar/8.png"> <img
+						src="__PUBLIC__/luxurycar/9.png">
+				</div>
+			</section>
+			<section
+				class="swiper-slide swiper-no-swiping input-panel swiper-slide-next"
+				style="height: 640px;">
+				<div class="page" id="page-home"
+					style="display: block; height: 640px;">
+					<div class="title-img">
+						<img src="__PUBLIC__/luxurycar/title.png">
+					</div>
+					<div>
+						<input class="name-input" id="user-name" placeholder="输入购车人姓名"
+							maxlength="8">
+					</div>
+					<div>
+						<span class="btn submit-btn" id="submit-btn">确认</span>
+					</div>
+					<div>
+						<span class="btn submit-btn" id="reselect-btn">重新选择</span>
+					</div>
+				</div>
+
+				<div class="page" id="page-result">
+					<img class="result-img" id="result-img">
+					<div class="loading-tip" id="loading-tip">
+						<img class="tip-img roting" src="__PUBLIC__/luxurycar/loading.png">
+						<div class="tip-title">正在为您生成订单</div>
+					</div>
+					<div class="btn-wrap" id="btn-wrap">
+						<div class="save-tip">
+							<img src="__PUBLIC__/luxurycar/savetip.png">
+						</div>
+						<div class="buttons">
+							<span class="btn return-btn">返回</span> <img class="share-btn"
+								id="share-btn" src="__PUBLIC__/luxurycar/button.png">
+						</div>
+					</div>
+
+				</div>
+			</section>
+		</div>
+	</div>
+	<script src="__PUBLIC__/luxurycar/swiper.min.js"></script>
+	<script src="__PUBLIC__/luxurycar/zepto.min.js"></script>
+	<script>
+		var res_path = "__PUBLIC__/luxurycar/bgs/";
+		var pageHome = document.getElementById('page-home');
+		var pageResult = document.getElementById('page-result');
+		var submitBtn = document.getElementById('submit-btn');
+		var resultImg = document.getElementById('result-img');
+		var btnWrap = document.getElementById('btn-wrap');
+		var loading = document.getElementById('loading-tip');
+		var shareBtn = document.getElementById('share-btn');
+		//var imgName = "/index.php/home/name_sign/getnamesign/color/373737/font/4/name/";
+		var imgName = "{:U('luxurycar/builderText/')}".replace(
+				'builderText.html', 'builderText/text/');
+		var qnToken = "<php>echo  time();</php>";
+		var qiniupath = funnyConfig.uploadPath;
+		pageHome.style.display = "block";
+		pageHome.style.height = window.innerHeight + "px";
+
+		var _host = "http://" + window.location.host;
+		var shareTitle = "有钱就是这么任性，多款豪车就在你眼前，还不快来下单！";
+	</script>
+	<script src="__PUBLIC__/luxurycar/luxury.js"></script>
+	<script src="__PUBLIC__/js/qiniu.js"></script>
+	<script src="__PUBLIC__/luxurycar/porsche.js"></script>
+	<script>
+		(function() {
+			if (typeof (WeixinJSBridge) == "undefined") {
+				document.addEventListener("WeixinJSBridgeReady", function(e) {
+					setTimeout(function() {
+						WeixinJSBridge.invoke('setFontSizeCallback', {
+							"fontSize" : 0
+						}, function(res) {
+							// alert(JSON.stringify(res));
+						});
+					}, 0);
+				});
+			} else {
+				setTimeout(function() {
+					WeixinJSBridge.invoke('setFontSizeCallback', {
+						"fontSize" : 0
+					}, function(res) {
+						// alert(JSON.stringify(res));
+					});
+				}, 0);
+			}
+		})();
+
+		function shareToplatform(imgUrl) {
+			sharetipAni();
+		}
+	</script>
+
+
+
+</body>
+</html>
