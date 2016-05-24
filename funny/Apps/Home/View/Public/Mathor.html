@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<block name="title"><title>标题</title></block>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+<script src="__PUBLIC__/js/jqueryv2.0.min.js" type="text/javascript"
+	charset="utf-8"></script>
+<script type="text/javascript">
+var funnyConfig = {
+		up2QiniuUrl: "{$aSiteDomin}index.php/home/api/save?key=",
+		uploadPath:"{$aSiteDomin}/Uploads/funny/"
+}
+</script>
+</head>
+
+<body >
+	<block name="content"></block>
+	<script src="__PUBLIC__/js/qiniu.js"></script>
+	<include file="Public:WxConfig" />
+</body>
+</html>

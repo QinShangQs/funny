@@ -4,8 +4,9 @@ namespace Home\Controller;
 
 use Think\Controller;
 
-class LuxurycarController extends Controller {
-	public function index() {
+class LuxurycarController extends BaseController {
+	public function index() {		
+		parent::setWxConfig('豪车订单生成器', "luxurycar/1.png", '有钱就是这么任性，多款豪车就在你眼前，还不快来下单！');
 		$this->display ();
 	}
 	private static function computerSpace($str,$text){

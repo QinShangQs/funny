@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<!-- saved from url=(0058)http://www.h5inav.com/index.php/home/funny/play/name/rural -->
-<html lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta name="viewport"
-	content="width=device-width, initial-scale=1,user-scalable = false">
-<title>农村广告牌</title>
+<extend name="Public:Mathor" />
+<block name="title"><title>农村广告墙</title></block>
+<block name="content">
 <link rel="stylesheet" href="__PUBLIC__/rural/main.css">
-<script src="__PUBLIC__/js/jqueryv2.0.min.js" type="text/javascript"
-	charset="utf-8"></script>
-<script src="__PUBLIC__/js/config.js" type="text/javascript"
-	charset="utf-8"></script>
-</head>
-<body>
 	<div id="inputbox" class="mainbox" style="height: 838px;">
 		<img id="bgimg" class="bgimg" src="__PUBLIC__/rural/bg.jpg">
 		<div id="page1" class="box active">
@@ -58,42 +46,8 @@
 		var qnToken = "<php>echo  time();</php>";
 		var qiniupath = funnyConfig.uploadPath;
 
-		var _host = "http://" + window.location.host;
-		var shareTitle = "村里的广告墙都被我承包了，想上找我！";
 	</script>
 
-	<script src="__PUBLIC__/rural/qiniu.js" type="text/javascript"
-		charset="utf-8"></script>
 	<script src="__PUBLIC__/rural/main.js" type="text/javascript"
 		charset="utf-8"></script>
-	<script>
-		(function() {
-			if (typeof (WeixinJSBridge) == "undefined") {
-				document.addEventListener("WeixinJSBridgeReady", function(e) {
-					setTimeout(function() {
-						WeixinJSBridge.invoke('setFontSizeCallback', {
-							"fontSize" : 0
-						}, function(res) {
-							// alert(JSON.stringify(res));
-						});
-					}, 0);
-				});
-			} else {
-				setTimeout(function() {
-					WeixinJSBridge.invoke('setFontSizeCallback', {
-						"fontSize" : 0
-					}, function(res) {
-						// alert(JSON.stringify(res));
-					});
-				}, 0);
-			}
-		})();
-		
-		function shareToplatform(imgUrl) {
-			sharetipAni();
-	    }
-	</script>
-
-
-</body>
-</html>
+</block>

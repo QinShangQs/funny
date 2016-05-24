@@ -4,8 +4,9 @@ namespace Home\Controller;
 
 use Think\Controller;
 
-class RuralController extends Controller {
+class RuralController extends BaseController {
 	public function index() {
+		parent::setWxConfig('农村广告墙', "rural/bg.jpg", '村里的广告墙都被我承包了，想上找我！');
 		$this->display ();
 	}
 	public function builderText($text, $number, $case) {

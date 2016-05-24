@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<title>豪车订单生成器</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<extend name="Public:Mathor" />
+<block name="title"><title>豪车订单生成器</title></block>
+<block name="content">
 <link rel="stylesheet" href="__PUBLIC__/luxurycar/swiper.min.css">
 <link rel="stylesheet" href="__PUBLIC__/luxurycar/style.css">
-<script src="__PUBLIC__/js/jqueryv2.0.min.js" type="text/javascript"
-	charset="utf-8"></script>
-<script src="__PUBLIC__/js/config.js" type="text/javascript"
-	charset="utf-8"></script>
-</head>
-
-<body style="display: block;">
 	<div
 		class="swiper-container parent swiper-container-vertical swiper-container-android">
 		<div class="swiper-wrapper">
@@ -87,7 +75,7 @@
 		var btnWrap = document.getElementById('btn-wrap');
 		var loading = document.getElementById('loading-tip');
 		var shareBtn = document.getElementById('share-btn');
-		//var imgName = "/index.php/home/name_sign/getnamesign/color/373737/font/4/name/";
+
 		var imgName = "{:U('luxurycar/builderText/')}".replace(
 				'builderText.html', 'builderText/text/');
 		var qnToken = "<php>echo  time();</php>";
@@ -95,41 +83,7 @@
 		pageHome.style.display = "block";
 		pageHome.style.height = window.innerHeight + "px";
 
-		var _host = "http://" + window.location.host;
-		var shareTitle = "有钱就是这么任性，多款豪车就在你眼前，还不快来下单！";
 	</script>
-	<script src="__PUBLIC__/luxurycar/luxury.js"></script>
-	<script src="__PUBLIC__/js/qiniu.js"></script>
+	<script src="__PUBLIC__/luxurycar/luxury.js"></script>	
 	<script src="__PUBLIC__/luxurycar/porsche.js"></script>
-	<script>
-		(function() {
-			if (typeof (WeixinJSBridge) == "undefined") {
-				document.addEventListener("WeixinJSBridgeReady", function(e) {
-					setTimeout(function() {
-						WeixinJSBridge.invoke('setFontSizeCallback', {
-							"fontSize" : 0
-						}, function(res) {
-							// alert(JSON.stringify(res));
-						});
-					}, 0);
-				});
-			} else {
-				setTimeout(function() {
-					WeixinJSBridge.invoke('setFontSizeCallback', {
-						"fontSize" : 0
-					}, function(res) {
-						// alert(JSON.stringify(res));
-					});
-				}, 0);
-			}
-		})();
-
-		function shareToplatform(imgUrl) {
-			sharetipAni();
-		}
-	</script>
-
-
-
-</body>
-</html>
+</block>

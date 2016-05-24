@@ -1,0 +1,95 @@
+
+<script type="text/javascript">
+		function shareToplatform(imgUrl) {
+			sharetipAni();
+		}
+		
+		var wxConfig = {$wxConfigJson};
+</script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+	wx.config({
+		debug : true,
+		appId : '{$signPackage.appId}',
+		timestamp : {$signPackage.timestamp},
+		nonceStr : '{$signPackage.nonceStr}',
+		signature : '{$signPackage.signature}',
+		jsApiList : [ 
+		            'checkJsApi',
+		            'onMenuShareTimeline',
+		            'onMenuShareAppMessage',
+					'onMenuShareQQ', 
+					'onMenuShareQZone' ]
+	});
+
+	
+	
+	wx.ready(function() {
+		wx.checkJsApi({
+		    jsApiList: [
+		                'checkJsApi',
+		                'onMenuShareTimeline',
+			            'onMenuShareAppMessage',
+						'onMenuShareQQ', 
+						'onMenuShareQZone' ], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+		    success: function(res) {
+		        // 以键值对的形式返回，可用的api值true，不可用为false
+		        // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+		    }
+		});
+		
+		wx.onMenuShareTimeline({
+			title : wxConfig.shareTitle, // 分享标题
+			link :  wxConfig.shareLink, // 分享链接
+			imgUrl :  wxConfig.shareImgUrl, // 分享图标
+			success : function() {
+				// 用户确认分享后执行的回调函数
+			},
+			cancel : function() {
+				// 用户取消分享后执行的回调函数
+			}
+		});
+
+		wx.onMenuShareAppMessage({
+			title : wxConfig.shareTitle, // 分享标题
+			link :  wxConfig.shareLink, // 分享链接
+			imgUrl :  wxConfig.shareImgUrl, // 分享图标
+			desc: wxConfig.shareDesc,
+			success : function() {
+				// 用户确认分享后执行的回调函数
+			},
+			cancel : function() {
+				// 用户取消分享后执行的回调函数
+			}
+		});
+		
+		wx.onMenuShareQZone({
+			title :'{$wxConfig.shareTitle}' , // 分享标题
+			link : '{$wxConfig.shareLink}', // 分享链接
+			imgUrl : '{$wxConfig.shareImgUrl}'  , // 分享图标
+			desc: '{$wxConfig.shareDesc}',
+			success: function () { 
+			       // 用户确认分享后执行的回调函数
+			},
+			cancel: function () { 
+			        // 用户取消分享后执行的回调函数
+			}
+		 });
+
+		wx.onMenuShareQQ({
+			title :'{$wxConfig.shareTitle}' , // 分享标题
+			link : '{$wxConfig.shareLink}', // 分享链接
+			imgUrl : '{$wxConfig.shareImgUrl}'  , // 分享图标
+			desc: '{$wxConfig.shareDesc}',
+			success: function () { 
+			       // 用户确认分享后执行的回调函数
+			},
+			cancel: function () { 
+			        // 用户取消分享后执行的回调函数
+			}
+		});
+	
+		
+	});
+</script>
