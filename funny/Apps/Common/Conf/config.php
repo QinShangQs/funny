@@ -2,7 +2,8 @@
 return array (
 		'DEFAULT_MODULE' => 'Home', // 默认模块
 		//'URL_MODEL' => 2, // URL模式
-		                  // 自定义配置项
+		'MODULE_ALLOW_LIST' => array('Home','Article'),
+		
 		'IMAGE_PATH' => './Uploads/funny/',
 		'IMAGE_SIZE_LIMIT' => 500,//显示image_path路径文件夹大小，单位M
 		'WX_APPID' => 'wx1a6d72cb63c2e01b',//微信APPID
