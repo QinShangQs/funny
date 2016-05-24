@@ -48,9 +48,11 @@ class BaseController extends Controller {
 	}
 	
 	private function getShareLink(){
+		$moduleName =  explode('/', __MODULE__);
+		$moduleName = strtolower($moduleName[count($moduleName)-1]);
 		$controllerName = explode('/', __CONTROLLER__);
-		$controllerName = $controllerName[count($controllerName)-1];
-		$shareLink = C('A_SIET_DOMAIN') ."index.php/home/jump.html?to=".strtolower($controllerName);
+		$controllerName = strtolower($controllerName[count($controllerName)-1]);
+		$shareLink = C('A_SIET_DOMAIN') .'index.php/home/jump.html?to='.$moduleName ."-".$controllerName;
 		return $shareLink;
 	}
 	private function getShareImg($picPath){

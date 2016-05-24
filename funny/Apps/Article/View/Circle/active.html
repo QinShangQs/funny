@@ -11,18 +11,21 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-<link href="__PUBLIC__/article/circle/action/020735947.css" type="text/css"
-	rel="stylesheet">
+<link href="__PUBLIC__/article/circle/action/020735947.css"
+	type="text/css" rel="stylesheet">
 
 <script type="text/javascript" src="__PUBLIC__/js/jqueryv2.0.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.jsonp.js"></script>
+
 </head>
-<body style="zoom: 1;">
-	<form id="form_buy" name="shop" method="post"
-		action="http://7895269.cn/index.php?s=/home/vacation/addorder#?@mp.weixin.qq.com"
+<body style="zoom:1;">
+
+	<form id="form_buy" name="shop" method="post" action="__URL__/doBuy"
 		onsubmit="document.getElementById(&#39;buy_now&#39;).disabled=true;return true;">
 		<section class="item_sec">
 			<div class="item_wrap rel">
-				<img src="__PUBLIC__/article/circle/action/25e038244cbcbe700a0072f6cd67c6ef.jpeg"
+				<img
+					src="__PUBLIC__/article/circle/action/25e038244cbcbe700a0072f6cd67c6ef.jpeg"
 					width="100%">
 				<p class="item_tle">【免.费.领.取.啦】明星同款情侣腕表</p>
 				<p class="item_pay" style="color: #F00;">货到付邮费
@@ -146,12 +149,15 @@ $(".sku_ul a").bind("click",function(){var o=$(this);if(!o.hasClass("sku_cur")){
 			return false;
 		}
 		$.ajax({
-			url:"/index.php?s=Home/Vacation/ajaxgetcity",
-			type:"post",
+			url:"__URL__/getCity",
 			data:{'proid':proid},
+			type:"post",
 			success:function($data){
 				$('#city').html($data);
-			}
+			},
+			error:function(XMLHttpRequest, textStatus, errorThrown){  
+			     $("#city").html(textStatus);  
+			}  
 		})
 	});
 	//选择交易地点查询交易地区
@@ -161,7 +167,7 @@ $(".sku_ul a").bind("click",function(){var o=$(this);if(!o.hasClass("sku_cur")){
 			return false;
 		}
 		$.ajax({
-			url:"/index.php?s=Home/Vacation/ajaxgetcity",
+			url:"__URL__/getCity",
 			type:"post",
 			data:{'proid':citid},
 			success:function($data){
