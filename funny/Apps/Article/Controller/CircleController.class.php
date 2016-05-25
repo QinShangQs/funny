@@ -8,6 +8,7 @@ class CircleController extends BaseController {
 	public function __construct(){
 		parent::__construct();
 		$this->_service = new CirclesService();
+		parent::setWxConfig('开门大吉，精彩回馈&&', "article/circle/share/logo.jpg", '马上戳开，GO!');
 	}
 	
 	public function index(){
@@ -15,7 +16,7 @@ class CircleController extends BaseController {
 	}
 	
 	public function share(){
-		parent::setWxConfig('开门大吉，精彩回馈&&', "article/circle/share/logo.jpg", '马上戳开，GO!');
+		
 		$this->display();
 	}
 	
