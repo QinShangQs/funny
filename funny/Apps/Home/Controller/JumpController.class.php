@@ -22,8 +22,8 @@ class JumpController extends Controller {
 				$module = $exps[0];
 				$controller = $exps[1];
 			}
-			
-			$bUrl = C ( 'B_SITE_URI' ).$module. "/". $controller . "?t=" . base64_encode ( time () );
+
+			$bUrl = C ( 'B_SITE_URI' ).$module. "/". $controller . "?tm=" . base64_encode ( time () );
 			header ( "Location:{$bUrl}" );
 		}
 	}

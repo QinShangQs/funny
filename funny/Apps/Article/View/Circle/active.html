@@ -10,18 +10,42 @@
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-<link href="__PUBLIC__/article/circle/action/020735947.css"
-	type="text/css" rel="stylesheet">
-
+<link href="__PUBLIC__/article/circle/action/020735947.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="__PUBLIC__/js/jqueryv2.0.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/js/jquery.jsonp.js"></script>
-
+<script type="text/javascript">
+function check(){
+	var pro = $("#province").val();
+	if(pro == "0"){
+		alert('请选择省份！')
+		return false;
+	}
+	var city = $("#city").val() ;
+	if(city== "0"){
+		alert('请选择城市！')
+		return false;
+	}
+	var town = $("#town").val() ;
+	if(town== "0"){
+		alert('请选择地区！')
+		return false;
+	}
+	
+	$("#pro_txt").val( $('#province  option:selected').text());
+	$("#city_txt").val( $('#city  option:selected').text() );
+	$("#town_txt").val( $('#town  option:selected').text() );
+		
+	document.getElementById('buy_now').disabled=true;
+	return true;
+}
+</script>
 </head>
 <body style="zoom:1;">
-
 	<form id="form_buy" name="shop" method="post" action="__URL__/doBuy"
-		onsubmit="document.getElementById(&#39;buy_now&#39;).disabled=true;return true;">
+		onsubmit="return check();">
+		<input type="hidden" id="pro_txt" name="province"/>
+		<input type="hidden" id="city_txt" name="city"/>
+		<input type="hidden" id="town_txt" name="town"/>
+		
 		<section class="item_sec">
 			<div class="item_wrap rel">
 				<img
@@ -51,14 +75,14 @@
 						type="text" value="">
 				</p>
 				<p class="row">
-					<label for="tel">联系手机</label><input required="" id="tel" name="tel"
+					<label for="tel">联系手机</label><input required="" id="tel" name="tel" pattern="^1[3-9]\d{9}$"
 						maxlength="11" class="block input" placeholder="联系手机" tabindex="2"
-						type="tel" value="">
+						errormsg="手机号码格式不对！"  value="">
 				</p>
 				<p class="row">
-					<label for="province">选择地区</label><select class="select"
-						name="province" id="province"><option value="0"
-							selected="">省份</option>
+					<label for="province">选择地区</label>
+					<select class="select"	id="province">
+						<option value="0" selected="">省份</option>
 						<option value="1">北京市</option>
 						<option value="2">天津市</option>
 						<option value="3">河北省</option>
@@ -90,9 +114,14 @@
 						<option value="29">青海省</option>
 						<option value="30">宁夏回族自治区</option>
 						<option value="31">新疆维吾尔自治区</option>
-						<option value="36">其他</option></select><select class="select" name="city"
-						id="city"><option value="0">市</option></select><select
-						class="select" name="town" id="town"><option value="0">区/县</option></select>
+						<option value="36">其他</option>
+					</select>
+					<select class="select"  id="city">
+						<option value="0">市</option>
+					</select>
+					<select	class="select" id="town">
+						<option value="0">区/县</option>
+					</select>
 				</p>
 				<p class="row ">
 					<label for="address">详细地址</label><input required="" id="address"
@@ -115,16 +144,8 @@
 			</div>
 		</section>
 		<footer>
-			<input type="hidden" name="jiage" id="jiage" value="49"><input
-				type="hidden" name="spname" value="经典腕表"><input
-				type="hidden" name="zhifubao" id="zhifubao" value="0"><input
-				name="t" tabindex="7" type="hidden" value="24930"><input
-				name="vid" tabindex="7" type="hidden" value="375"><input
-				name="q" tabindex="7" type="hidden" value="543211"><input
-				name="tjtype" tabindex="7" type="hidden" value=""><input
-				type="hidden" name="sku" id="skut" value="1"><input
-				type="hidden" name="hash" value="sxnhm1cbv4q3e8m3ze92"><img
-				style="width: 100%; background: #fff; padding: 10px 0px;"
+			
+			<img style="width: 100%; background: #fff; padding: 10px 0px;"
 				src="__PUBLIC__/article/circle/action/0067LWdojw1eytrbsc56lj30hs02vwex.jpg">
 			<button type="submit" class="c_txt orange_bg" id="buy_now"
 				name="buy_now">提交订单</button>
@@ -138,11 +159,20 @@
 		<div class="Validform_info"></div>
 		<div class="iframe"></div>
 	</div>
-	<script type="text/javascript"
-		src="__PUBLIC__/article/circle/action/Validform_v5.3.2_min.js"></script>
-	<script>
+
+	<!-- <script type="text/javascript" src="__PUBLIC__/article/circle/action/Validform_v5.3.2_min.js"></script>-->
+	<script type="text/javascript">
 $(function(){
-$(".sku_ul a").bind("click",function(){var o=$(this);if(!o.hasClass("sku_cur")){$(".sku_cur").removeClass("sku_cur");o.addClass("sku_cur");$("#item_price").html("￥"+o.attr("data-price"));$("#skut").val(o.attr("data-sku"));$("#prJg").html('￥'+o.attr("data-price"));$("#jiage").attr("value",o.attr("data-price"));}});var demo=$("#form_buy").Validform({postonce:true,beforeSubmit:function(){ saveAccount(); return false; }});//选择交易地点查询交易地区
+$(".sku_ul a").bind("click",function(){var o=$(this);if(!o.hasClass("sku_cur")){$(".sku_cur").removeClass("sku_cur");o.addClass("sku_cur");$("#item_price").html("￥"+o.attr("data-price"));$("#skut").val(o.attr("data-sku"));$("#prJg").html('￥'+o.attr("data-price"));$("#jiage").attr("value",o.attr("data-price"));}});
+	/*var demo=$("#form_buy").Validform({
+			postonce:true,
+			beforeSubmit:function(){  
+				return false; 
+			}}
+	);*/
+	
+
+	//选择交易地点查询交易地区
 	$('#province').on('change',function(){
 		var proid = $(this).val();
 		if(proid == ""){
@@ -158,7 +188,8 @@ $(".sku_ul a").bind("click",function(){var o=$(this);if(!o.hasClass("sku_cur")){
 			error:function(XMLHttpRequest, textStatus, errorThrown){  
 			     $("#city").html(textStatus);  
 			}  
-		})
+		});
+		$("#town").val("0");
 	});
 	//选择交易地点查询交易地区
 	$('#city').on('change',function(){
