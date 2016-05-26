@@ -29,7 +29,7 @@ class CircleController extends BaseController {
 		$std = parent::_getPostStd(array('agree'));
 		$result = $this->_service->create($std);
 		if($result->success){
-			$this->redirect('finish');
+			$this->redirect('finish?tm='.$this->tm);
 		}else{
 			$this->error($result->msg);
 		}

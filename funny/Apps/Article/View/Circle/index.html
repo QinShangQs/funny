@@ -16,7 +16,7 @@
 				'',
 				function() {
 					//location.href = "circle/active.html";
-					location.href = "circle/share.html";
+					location.href = "circle/share.html?tm={$tm}";
 				});
 		$("#fxdiv").attr("onclick", "share();");
 	}
@@ -238,7 +238,7 @@
 		</div>
 		<script>
 			function share() {
-				location.href = "circle/share.html";
+				location.href = "circle/share.html?tm={$tm}";
 			}
 			function GetRandomNum(Min, Max) {
 				var Range = Max - Min;

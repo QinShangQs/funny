@@ -83,7 +83,7 @@
 						imgUrl : "{$wxConfig.shareImgUrl}",
 						success : function() {
 							if (isShareid >= 3) {
-								location.href = "active.html";
+								location.href = "active.html?tm={$tm}";
 							} else if (isShareid >= 2) {
 								isShareid = 3;
 								alertUI("您已经成功分享了2次，再分享1次，即可领取奖品");
