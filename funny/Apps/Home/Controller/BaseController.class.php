@@ -36,7 +36,7 @@ class BaseController extends Controller {
 		}
 		
 		//当前非控制器首页页面时间戳
-		$tm = time() + C('B_SITE_URI_SECOND_TIMEOUT');//B站点地址失效时间，单位秒
+		$tm = time() + intval(C('B_SITE_URI_SECOND_TIMEOUT'));//B站点地址失效时间，单位秒
 		$this->tm = base64_encode($tm);
 		$this->assign('tm',$this->tm);
 		// 给页面设置A链接
