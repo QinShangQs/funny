@@ -15,8 +15,9 @@ class BaseController extends Controller {
 		$signPackage = $this->jssdk->GetSignPackage ();
 		$this->assign ( 'signPackage', $signPackage );
 		
-		$action = __ACTION__;
-		if(!strstr($action, 'get') && !strstr($action, 'do')){//放弃拦截get和dopost请求
+		$action = strtolower(__ACTION__);
+		//放弃拦截get和dopost请求、builder生成图片请求
+		if(!strstr($action, 'get') && !strstr($action, 'do') && !strstr($action, 'builder')){
 			$t = I ( 'tm', '' );
 			if (! empty ( $t )) {
 				$limit = C('B_SITE_URI_TIMEOUT');
