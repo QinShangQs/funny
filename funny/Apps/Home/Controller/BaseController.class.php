@@ -11,41 +11,41 @@ class BaseController extends Controller {
 	protected $tm = '';
 	public function _initialize() {
 		$this->jssdk = new JsSdk ( C ( 'WX_APPID' ), C ( 'WX_SECRET' ) );
-		// $this->jssdk->debug = true;
 		$signPackage = $this->jssdk->GetSignPackage ();
 		$this->assign ( 'signPackage', $signPackage );
 		
-		$action = strtolower(__ACTION__);
-		//放弃拦截get和dopost请求、builder生成图片请求
-		if(!strstr($action, 'get') && !strstr($action, 'do') && !strstr($action, 'builder')){
+		// 若是微信游览器则对action进性拦截
+		$action = explode ( '/', __ACTION__ );
+		$action = strtolower ( $action [count ( $action ) - 1] );
+		if (preg_match ( '/MicroMessenger/i', $_SERVER ['HTTP_USER_AGENT'] ) && ! preg_match ( '/(get|do|builder)/i', $action )) {
 			$t = I ( 'tm', '' );
 			if (! empty ( $t )) {
-				$limit = C('B_SITE_URI_TIMEOUT');
+				$limit = C ( 'B_SITE_URI_TIMEOUT' );
 				$t = base64_decode ( $t );
-				if (time () - $t > intval($limit)) { // 链接n秒钟后失效
+				if (time () - $t > intval ( $limit )) { // 链接n秒钟后失效
 					$this->display ( 'Home@Base:timeOut' );
 					exit ();
 				}
-			}else{
-				$bSite = strtolower(C('B_SITE_URI'));
-				$curUrl = strtolower("http://".$_SERVER['HTTP_HOST']."/");
-				if(strstr($bSite, $curUrl)){
+			} else {
+				$bSite = strtolower ( C ( 'B_SITE_URI' ) );
+				$curUrl = strtolower ( "http://" . $_SERVER ['HTTP_HOST'] . "/" );
+				if (strstr ( $bSite, $curUrl )) {
 					$this->display ( 'Home@Base:timeOut' );
 					exit ();
 				}
-			}	
+			}
 		}
 		
-		//当前非控制器首页页面时间戳
-		$tm = time() + intval(C('B_SITE_URI_SECOND_TIMEOUT'));//B站点地址失效时间，单位秒
-		$this->tm = base64_encode($tm);
-		$this->assign('tm',$this->tm);
+		// 当前非控制器首页页面时间戳
+		$tm = time () + intval ( C ( 'B_SITE_URI_SECOND_TIMEOUT' ) ); // B站点地址失效时间，单位秒
+		$this->tm = base64_encode ( $tm );
+		$this->assign ( 'tm', $this->tm );
 		// 给页面设置A链接
 		$this->assign ( 'aSiteDomin', C ( 'A_SIET_DOMAIN' ) );
 	}
 	/**
 	 * 设置分享链接
-	 * 
+	 *
 	 * @param unknown $shareTitle        	
 	 * @param unknown $picPath
 	 *        	如luxurycar/1.png
@@ -79,7 +79,7 @@ class BaseController extends Controller {
 	
 	/**
 	 * 获取POST的请求数据转换为对象
-	 * 
+	 *
 	 * @param unknown $notins
 	 *        	要排除进入对象的POST键
 	 * @return \stdClass
@@ -102,7 +102,7 @@ class BaseController extends Controller {
 	}
 	/**
 	 * 获取REQUEST的请求数据转换为对象
-	 * 
+	 *
 	 * @param unknown $notins
 	 *        	要排除进入对象的REQUEST键
 	 * @return \stdClass
