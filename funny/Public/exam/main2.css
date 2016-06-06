@@ -1,0 +1,83 @@
+@charset "UTF-8";
+html,body,div,img,p,span,a,ul,li,input{margin: 0;padding: 0;border: none;}
+html,body{font-size: 20px;width: 100%;height: 100%;max-width: 640px;margin: 0 auto;}
+body{position: relative;}
+.funny-Main-box{display: none;position: fixed;width: 100%;max-width: 640px;height: 100%;overflow: hidden;left: 0;top: 0;text-align: left;}
+.funny-menu-openbtn{position: absolute;width: 1.1rem;height: 1.1rem;top: 10px;left: 10px;}
+.funny-menu-openbtn img{width: 1.1rem; height: 1.1rem; }
+.UnreadMessage{display: inline-block;margin-left: 5px;background-color: red;color: white;height: 16px;line-height: 16px;min-width: 16px;text-align: center;padding: 0 5px;box-sizing: border-box;-webkit-box-sizing: border-box;border-radius: 8px;}
+.UnreadMessage_head{display: none;color: #ff4303;background: white;font-size: 12px;position: absolute;left: 25px;top: 9px;height: 16px;line-height: 16px;min-width: 16px;border-radius: 8px;padding: 0 5px;box-sizing: border-box;-webkit-box-sizing: border-box;font-weight: normal;}
+.funny-menu-box{width: 100%;height: 100%;position: absolute;}
+.funny-fullscreen{position: absolute;width: 100%;height: 100%;left: 0;top: 0;background-color: rgba(0,0,0,0.5);}
+.funny-btn-box{position: absolute;width: 60%;max-width: 384px;height: 100%;overflow: auto;left: -300px;top: 0;background-color: white;}
+.funny-userinfo{position: relative;border-bottom: 6px solid #e9e9e9;text-align: center;}
+.funny-user-icon{width: 2.35rem;margin: 0.65rem auto 0 auto;border-radius: 50%;}
+.funny-user-name{margin: 0.3rem auto 0.6rem auto;font-size: 12px;color: black;}
+.funny-user-name a:link,.funny-user-name a:visited,.funny-user-name a:active,.funny-user-name a:hover{color: #4e4e4e;text-decoration: none;}
+.funny-menu-btnbox{border-bottom: 1px solid #E9E9E9;height: 2.25rem;position: relative;overflow: hidden;}
+.funny-function{position: relative;height: auto;overflow: auto;}
+.funny-menu-btn{display: inline-block;margin: 0.275rem 0.8rem 0.275rem 0.7rem;width: 1.7rem;}
+.funny-menu-text{position: absolute;height: 2.25rem;line-height: 2.25rem;color: #4e4e4e;font-size: 12px;}
+.funny-bottom-tips{position: absolute;background-color: white;width: 100%;text-align: center;bottom: 5px;left: 0;font-size: 12px;margin-top: 10px;}
+.funny-bottom-tips a:link,.funny-bottom-tips a:visited,.funny-bottom-tips a:active,.funny-bottom-tips a:hover{color: #4e4e4e;text-decoration: none;}
+.funny-bottom-tips-scroll{position: relative;margin-top: 5rem;}
+.funny-btnbox-open{height: 5.85rem;background-color: #efefef;}
+.funny-share-btnbox{position: absolute;width: 100%;height: 2.2rem;top: 2.7rem;}
+.funny-share-btn{position: absolute;width: 1.725rem;height: 2.2rem;top: 0;}
+.funny-share-btn:first-child{left: 0.7rem;}
+.funny-share-btn:nth-child(2){left: 50%;transform: translateX(-50%);-webkit-transform: translateX(-50%);}
+.funny-share-btn:last-child{right: 0.75rem;}
+.funny-menu-btnbox .iconfont{position: absolute;height: 2.25rem;line-height: 2.25rem;top: 0;right: 0.75rem;font-size: 12px;color: #acacac;}
+.funny-menu-btnbox .icon2{display: none;}
+.funny-btnbox-open .icon2{display: block;}
+.funny-btnbox-open .icon1{display: none;}
+
+/* 评论样式 */
+.funny-comment-box {position: absolute;width: 100%;max-width: 640px;height: 100%;left: 300px;margin: 0 auto;top: 0;display: none;background-color: white;overflow: hidden;}
+.funny-comment-back {width: 100%;height: 35px;line-height: 35px;text-align: center;position: relative;left: 0;top: 0px;color: #b37bd6;font-size: 14px;border-bottom: 6px solid #EBEBEB;}
+.funny-comment-back .iconfont {position: absolute;left: 0.55rem;}
+.funny-comment-body {position: relative;width: 100%;height: 100%;padding-bottom: 90px;overflow: auto;box-sizing: border-box;-webkit-box-sizing: border-box;}
+.funny-user-comment {display: block;position: relative;width: 100%;min-height: 2.4rem;font-size: 12px;border-bottom: 1px solid #ebebeb;}
+.funny-user-comment:last-child {border-bottom: none;}
+.funny-user-comment .usericon {display: inline-block;width: 1.7rem;height: 1.7rem;left: 0.55rem;top: 0.4rem;position: absolute;}
+.funny-user-comment .usericon img {width: 100%;border-radius: 50%;}
+.username {position: absolute;display: inline-block;color: #838383;top: 0.55rem;left: 2.65rem;}
+.content {display: block;color: #373737;width: 100%;padding-left: 2.65rem;padding-right: 20px;padding-top: 1.35rem;line-height: 20px;box-sizing: border-box;-webkit-box-sizing: border-box;text-align: justify;margin-bottom: 0.25rem;word-wrap: break-word;}
+.time {position: absolute;color: #838383;top: 0.55rem;right: 0.5rem;}
+.funny-comment-footer{position: relative;left: 0;top: 0px;z-index: 10;width: 100%;height: 45px;line-height: 45px;background-color: white;border-bottom: 6px solid #EBEBEB;}
+.funny-comment-input{position: absolute;display: inline-block;width: 75%;height: 35px;left: 12px;top: 5px;font-size: 12px;line-height: 12px;border: 1px solid #969696;border-radius: 5px;padding: 11.5px 5px;outline: none;box-sizing: border-box;-webkit-box-sizing: border-box; -webkit-appearance: none;}
+.funny-comment-submit{position: absolute;display: inline-block;width: 13.75%;height: 35px;line-height: 35px;right: 12px;font-size: 12px;top: 5px;background-color: #70CFA7;color: white;text-align: center;border-radius: 5px;}
+.funny-share-wx{display: none;position: absolute;width: 100%;height: 100%;left: 0;top: 0;background-color: rgba(0,0,0,0.85);}
+.funny-share-wx img{position: absolute;width: 10.525rem;left: 2.735rem;top: 1.5rem;}
+/* iconfont */
+@font-face {font-family: 'iconfont';src: url('iconfont.ttf') format('truetype');}
+.iconfont{ font-family:"iconfont" !important; font-size:16px;font-style:normal; -webkit-font-smoothing: antialiased; -webkit-text-stroke-width: 0.2px; -moz-osx-font-smoothing: grayscale;}
+.funny-comment-loadingimg{display: block;margin: 5rem auto 20px auto;width: 2.3rem;-webkit-animation: roting  1s  linear infinite;}
+.funny-comment-loadingtext{text-align: center;color: #b37bd6;font-size: 12px;letter-spacing: 1px;}
+@-webkit-keyframes roting {
+	0% { -webkit-transform:rotateZ(0);}
+	100% { -webkit-transform:rotateZ(360deg) ;}
+}
+
+.funny-input-tips {position: absolute;left: 5.89rem;top: 10rem;width: 4.22rem;height: 4.22rem;display: none;}
+.funny-input-tips img{width: 100%;}
+.funny-user-send{background-color: #F2DEFF;border-color: white !important;}
+
+.Refresh-tip{
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	border-top: 1px solid #e8e8e8;
+	border: 0;
+	background: #fff;
+	text-align: center;
+	font-size: 12px;
+	display: none;
+}
+.Refresh-tip img{
+	display: inline-block;
+    position: relative;
+    top: 4px;
+    margin-right: 4px;
+}

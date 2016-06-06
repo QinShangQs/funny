@@ -1,0 +1,165 @@
+<extend name="Public:Mathor" />
+<block name="title"><title>高考准考证生成器</title></block>
+<block name="content">	
+<script type="text/javascript">
+		var shareConfig = {pic:''};
+		$(document).ready(function(){
+			shareConfig.pic = wxConfig.shareImgUrl; 
+		});
+</script>
+<link rel="stylesheet" href="__PUBLIC__/exam/common.css">
+<link rel="stylesheet" href="__PUBLIC__/exam/main.css">
+	<div id="inputbox" class="mainbox" style="height: 568px;">
+		<div id="page1" class="box active">
+			<img class="title" src="__PUBLIC__/exam/title.png">
+			<p class="p-title">姓名</p>
+			<input id="input" class="input" type="text" maxlength="4"
+				placeholder="请输入你的姓名">
+			<p class="p-title">考点</p>
+			<input id="input2" class="input" type="text" maxlength="8"
+				placeholder="建议输入你考点名称">
+			<p class="p-title">性别</p>
+			<p class="p1btnbox">
+				<span id="p1-btn1" class="p1-btn p1-btn1 " data="男">男</span> <span
+					id="p1-btn2" class="p1-btn p1-btn2 " data="女">女</span>
+			</p>
+			<p>
+				<span id="submitbtn" class="start">确认生成</span>
+			</p>
+		</div>
+		<div id="page2" class="box">
+			<div class="ResultTitlebox">
+				<div class="common-result-top" style>
+					高考准考证生成器 
+				</div>
+				<img id="loading" class="loading" src="__PUBLIC__/exam/loading.png">
+				<p id="loading-text" class="loading-text">正在生成</p>
+			</div>
+		</div>
+		<div id="page3" class="box page3">
+			<div class="ResultTitlebox">
+				<div class="common-result-top">
+
+					高考准考证生成器 </a>
+				</div>
+				<div class="common-result-btnbox">
+            <div class="commonbtn-playAgain btn-back" onclick="changeContent();" style="display: inline-block; margin-bottom: 15px;">换个性别试试</div>
+                            <div id="btn-share" class="commonbtn-share" style="display: none;">立即去整人</div>
+                <img class="commontip" style="" src="__PUBLIC__/exam/tips.png">        </div>
+			</div>
+			
+			<div class="resultimgbox">
+				<img id="result" class="result"
+					src="http://www.h5inav.com/index.php/home/funny/play/name/examination">
+			</div>
+		</div>
+	</div>
+	<div id="funny-menu-openbtn" class="funny-menu-openbtn" >
+	</div>
+	<div id="funny-menu-box" class="funny-menu-box" style="display:none">
+		<div id="funny-btn-box" class="funny-btn-box">
+			<div id="scroll-box">
+				<div class="funny-userinfo">
+				<p></p>
+											<a href="/index.php/home/funny/jumptologin/name/examination"><img class="funny-user-icon" src="http://funny.cdn.itwlw.com/common/menu/img/unlisted.png" alt="icon"></a>
+						<p class="funny-user-name"><a href="/index.php/home/funny/jumptologin/name/examination">登录/注册</a></p>
+						<img id="funny-user-icon" src="" alt="" style="display: none;">
+						<p id="funny-user-name" style="display: none;"></p>				</div>
+				<div class="funny-menu-btnbox">
+					<img class="funny-menu-btn" src="http://funny.cdn.itwlw.com/common/menu/img/1.png" alt=""><span class="funny-menu-text">讨论区<span class="UnreadMessage">1</span></span><i class="iconfont">&#xe601;</i>
+				</div>
+				<div class="funny-menu-btnbox funny-menu-btnbox2">
+					<div class="funny-showshareinfo"><img class="funny-menu-btn" src="http://funny.cdn.itwlw.com/common/menu/img/2.png" alt=""><span class="funny-menu-text">分享</span><i class="iconfont icon1">&#xe601;</i><i class="iconfont icon2">&#xe603;</i></div>					
+					<div class="funny-share-btnbox">
+						<img class="funny-share-btn funny-share-a" src="http://funny.cdn.itwlw.com/common/menu/img/a.png" alt="">
+						<img class="funny-share-btn funny-share-b" src="http://funny.cdn.itwlw.com/common/menu/img/b.png" alt="">
+						<img class="funny-share-btn funny-share-c" src="http://funny.cdn.itwlw.com/common/menu/img/c.png" alt="">
+					</div>
+				</div>
+				
+				<div class="funny-menu-btnbox funny-menu-btnbox3">
+					<img class="funny-menu-btn" src="http://funny.cdn.itwlw.com/common/menu/img/3.png" alt=""><span class="funny-menu-text">更多搞怪</span><i class="iconfont">&#xe601;</i>
+				</div>
+				<!-- <div class="funny-menu-btnbox funny-menu-btnbox4">
+					<img class="funny-menu-btn" src="http://funny.cdn.itwlw.com/common/menu/img/4.png" alt=""><span class="funny-menu-text">玩过的</span><i class="iconfont">&#xe601;</i>
+				</div> -->
+				<div class="funny-menu-btnbox funny-menu-btnbox5">
+					<img class="funny-menu-btn" src="http://funny.cdn.itwlw.com/common/menu/img/5.png" alt=""><span class="funny-menu-text">刷新</span><i class="iconfont">&#xe601;</i>
+				</div>
+				<div id="funny-menu-btnbox6" class="funny-menu-btnbox funny-menu-btnbox6" style="display: none;">
+					<img class="funny-menu-btn" src="http://funny.cdn.itwlw.com/common/menu/img/6.png" alt=""><span class="funny-menu-text">返回</span><i class="iconfont">&#xe601;</i>
+				</div>
+			</div>
+			<div class="funny-bottom-tips" ><a href="">Powered by 搞怪专家</a></div>			
+		</div>
+	</div>
+	<script>
+		(function() {
+			if (typeof (WeixinJSBridge) == "undefined") {
+				document.addEventListener("WeixinJSBridgeReady", function(e) {
+					setTimeout(function() {
+						WeixinJSBridge.invoke('setFontSizeCallback', {
+							"fontSize" : 0
+						}, function(res) {
+							// alert(JSON.stringify(res));
+						});
+					}, 0);
+				});
+			} else {
+				setTimeout(function() {
+					WeixinJSBridge.invoke('setFontSizeCallback', {
+						"fontSize" : 0
+					}, function(res) {
+						// alert(JSON.stringify(res));
+					});
+				}, 0);
+			}
+		})();
+	</script>
+
+	<script>
+		var page1 = document.getElementById('page1'), page2 = document
+				.getElementById('page2'), page3 = document
+				.getElementById('page3');
+
+		var submitBtn = document.getElementById('submitbtn');
+		var shareBtn = document.getElementById('btn-share');
+		var resultImg = document.getElementById('result');
+
+		var imgBg = "__PUBLIC__/exam/result.jpg";
+		var imgBgLocal = "__PUBLIC__/exam/result.jpg";
+
+		//var isWeiXin = isWeixin ? 1:0;
+		var isWeiXin = "1";
+		var imgName = "{:U('exam/builderText/')}".replace('builderText.html',
+					'builderText');
+
+		var qnToken = "<php>echo  time();</php>";
+		var qiniupath = funnyConfig.uploadPath;
+	</script>
+	<script src="__PUBLIC__/js/qiniu.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="__PUBLIC__/exam/common.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="__PUBLIC__/exam/main.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script>
+		(function(doc, win) {
+			var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange'
+					: 'resize', recalc = function() {
+				var clientWidth = docEl.clientWidth;
+				if (clientWidth > 640)
+					clientWidth = 640;
+				if (!clientWidth)
+					return;
+				docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+			};
+			if (!doc.addEventListener)
+				return;
+			win.addEventListener(resizeEvt, recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false);
+			recalc();
+		})(document, window);
+	</script>
+
+</block>
