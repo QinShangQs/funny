@@ -14,7 +14,7 @@ class ExamController extends BaseController {
 		$config = array (
 				'font' => './Public/fonts/jsongt.TTF',
 				'text' => $text,
-				'size' => 23,
+				'size' => 24,
 				'red' => 55, // 文字颜色
 				'grn' => 55,
 				'blu' => 55,
@@ -22,7 +22,7 @@ class ExamController extends BaseController {
 				'bg_grn' => 212,
 				'bg_blu' => 209,
 				'x' => 0,
-				'y' => 30,
+				'y' => 38,
 				'width' => 260,
 				'height' => 120 
 		);
