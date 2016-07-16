@@ -1,0 +1,69 @@
+<extend name="Public:Mathor" />
+<block name="title">
+<title>我的性格标签</title>
+</block>
+<block name="content"> 
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/kidney/4css.css"/>
+<script type="text/javascript"
+	src="__PUBLIC__/kidney/hs_mobiscroll_date.js"></script> <script
+	type="text/javascript" src="__PUBLIC__/kidney/hs_mobiscroll.js"></script>
+<script type="text/javascript">
+var erweima = '__PUBLIC__/kidney/erweima.jpg';
+var api = '__URL__/builderText';
+$(function(){init();});
+</script>
+
+<div class="background">
+	<div class="name">
+		<span class="title">姓名:</span> <span class="write-name"> <input
+			type="text" value="" placeholder="请输入姓名（最多4个汉字）" class="user-name"
+			maxlength="4" onblur="checkName()">
+		</span>
+	</div>
+	<div class="birthday">
+		<span class="title">生日:</span> <span class="chose-birthday"> <input
+			type="text" readonly="" value="" placeholder="请选择出生日期（阳历生日）"
+			class="user-birthday" id="user_birthday">
+		</span>
+	</div>
+</div>
+<div class="button" onclick="makePicture()"
+	style="width: 256px; height: 37.2816px; position: absolute; z-index: 10; top: 77%; left: 10%; display: block;"></div>
+
+<div class="transparent-float" style="display: none;"></div>
+<div class="float" style="display: none;">
+	<div class="picture-box">
+		<span class="close" onclick="closeFloat()"></span>
+		<span class="picture">
+			<img class="mypicture" src="" />
+		</span>
+		<span class="scan"></span>
+	</div>
+	<div class="text"></div>
+
+</div>
+
+<script type="text/javascript">
+
+$(function () {
+	var currYear = new Date().getFullYear();	
+
+	var opt={};
+	opt.date = {preset : 'date'};
+	opt.default = {
+		theme: 'android-ics light', 
+		display: 'bottom', 
+		mode: 'scroller',
+		dateFormat: 'yyyy-mm-dd',
+		lang: 'zh',
+		showNow: false,
+		startYear: currYear - 100,
+		endYear: currYear
+	};
+
+	$("#user_birthday").mobiscroll($.extend(opt['date'], opt['default']));
+	
+
+});
+</script> <script type="text/javascript" src="__PUBLIC__/kidney/4js.js"></script>
+</block>
