@@ -15,27 +15,30 @@ class BaseController extends Controller {
 		$this->assign ( 'signPackage', $signPackage );
 		
 		// 若是微信游览器则对action进性拦截
-		$action = explode ( '/', __ACTION__ );
-		$action = strtolower ( $action [count ( $action ) - 1] );
-		if (preg_match ( '/MicroMessenger/i', $_SERVER ['HTTP_USER_AGENT'] ) && ! preg_match ( '/(get|do|builder)/i', $action )) {
-			$t = I ( 'tm', '' );
-			if (! empty ( $t )) {
-				$limit = C ( 'B_SITE_URI_TIMEOUT' );
-				$t = base64_decode ( $t );
-				if (time () - $t > intval ( $limit )) { // 链接n秒钟后失效
-					$this->display ( 'Home@Base:timeOut' );
-					exit ();
-				}
-			} else {
-				$bSite = strtolower ( C ( 'B_SITE_URI' ) );
-				$curUrl = strtolower ( "http://" . $_SERVER ['HTTP_HOST'] . "/" );
-				if (strstr ( $bSite, $curUrl )) {
-					$this->display ( 'Home@Base:timeOut' );
-					exit ();
+		$controller = explode ( '/', __CONTROLLER__ );
+		$controller = strtolower ( $controller [count ( $controller ) - 1] );
+		if ($controller != 'kidney') {
+			$action = explode ( '/', __ACTION__ );
+			$action = strtolower ( $action [count ( $action ) - 1] );
+			if (preg_match ( '/MicroMessenger/i', $_SERVER ['HTTP_USER_AGENT'] ) && ! preg_match ( '/(get|do|builder)/i', $action )) {
+				$t = I ( 'tm', '' );
+				if (! empty ( $t )) {
+					$limit = C ( 'B_SITE_URI_TIMEOUT' );
+					$t = base64_decode ( $t );
+					if (time () - $t > intval ( $limit )) { // 链接n秒钟后失效
+						$this->display ( 'Home@Base:timeOut' );
+						exit ();
+					}
+				} else {
+					$bSite = strtolower ( C ( 'B_SITE_URI' ) );
+					$curUrl = strtolower ( "http://" . $_SERVER ['HTTP_HOST'] . "/" );
+					if (strstr ( $bSite, $curUrl )) {
+						$this->display ( 'Home@Base:timeOut' );
+						exit ();
+					}
 				}
 			}
 		}
-		
 		// 当前非控制器首页页面时间戳
 		$tm = time () + intval ( C ( 'B_SITE_URI_SECOND_TIMEOUT' ) ); // B站点地址失效时间，单位秒
 		$this->tm = base64_encode ( $tm );

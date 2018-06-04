@@ -27,7 +27,7 @@ class KidneyController extends BaseController {
     	if (! file_exists ( $local )) {
     		mkdir ( $local, 0777, true );
     	}
-    	$remoteUrl['ImageURL'] =  'http://xg.dkrgh.cn/build.php?name='.urlencode($name).'&birthday='.$birthday;
+    	$remoteUrl['ImageURL'] =  'http://xinge.xzdqc.cn/build.php?name='.urlencode($name).'&birthday='.$birthday;
     	$local = static::$localPath. "k-".time().'.jpg';
     	
     	Http::curlDownload($remoteUrl['ImageURL'], $local);
