@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+    <link href="__PUBLIC__/article/video/index.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div style="padding: 20px 15px 15px; background-color: #fff; border-bottom: solid 0.5px #e4e4e4;">
+        <h2 class="rich_media_title" id="activity-name"></h2>
+        <div class="rich_media_meta_list" style="margin-bottom: 0;">
+            <em id="post-date" class="rich_media_meta rich_media_meta_text"></em>
+            <a class="rich_media_meta rich_media_meta_link rich_media_meta_nickname"
+               style="color: #607fa6;" id="post-user"
+               href="{$banner_url}"> 正能量视频</a>
+        </div>
+
+        <div class="rich_media_content" id="js_content"></div>
+
+        <div id="hutui" style="position: relative;">
+            <!--<p style="color: red;font-weight: 900;margin-top: 15px;">更多精彩>>></p>-->
+            <div style="position: relative; margin: 0 5px -10px;">
+                <a href="{$banner_url}">
+                <!--<img src="/./20180325/006D6Vj0ly1fp5aj5y1sng30hs0243yg.gif" border="0"-->
+                        <!--style="width: 100%;">-->
+                </a>
+            </div>
+        </div>
+
+        <div id="js_toobar" style="padding-top: 10px; color: #8c8c8c; line-height: 32px; font-size: 17px; height: 32px;">
+            <a style="color: #607fa6; float: left; margin-right: 10px;" id=""
+               href="{$banner_url}">
+                阅读原文
+            </a>
+            <div id="js_read_area" style="float: left;margin-right: 10px;">
+                阅读 <span id="readNum">100000+</span>
+            </div>
+            <div id="like"
+                 style="margin-right: 0; margin-left: 8px; float: left; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); outline: 0; min-width: 3.5em;">
+                <i style="position: relative; top: 1px; margin-right: 3px; background: transparent url(__PUBLIC__/article/video/zan.png) no-repeat; width: 13px; height: 13px; display: inline-block; -webkit-background-size: 100% auto; background-size: 100% auto;"></i>
+                <span class="praise_num" id="likeNum">1800</span>
+            </div>
+            <!--<a style="color: #607fa6; float: right; margin-right: 10px;" id=""-->
+               <!--href="{$banner_url}">-->
+                <!--投诉-->
+            <!--</a>-->
+        </div>
+    </div>
+
+    <div id="gdt_area" style="">
+        <div style="border-bottom: 1px dotted #e1e1e1; margin: 0 15px 20px; text-align: center; line-height: 22px;">
+            <span style="position: relative; top: 10px; background: #f3f3f3; color: #868686; font-size: 17px; padding: 0 8px">广告</span>
+        </div>
+        <div style="position: relative; margin: 0 15px 10px;">
+            <a href="{$banner_url}">
+                <!--<img src="/./20180325/20180325170304.jpg" border="0" style="width: 100%;"/>-->
+            </a>
+        </div>
+    </div>
+
+    <div id="pauseplay"
+         style="display: none; opacity: 0; position: fixed; left: 0px; right: 0px; top: 65px; bottom: 0px; background-color: rgb(80, 80, 80); z-index: 1000000; height: 190px;">
+    </div>
+
+    <div id="lly_dialog" style="display: none;">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__bd" id="lly_dialog_msg"></div>
+            <div class="weui-dialog__ft">
+                <a href="javascript:;"
+                   class="weui-dialog__btn weui-dialog__btn_primary"
+                   id="lly_dialog_btn">好</a>
+            </div>
+        </div>
+    </div>
+
+    <img src="__PUBLIC__/article/video/0.png"
+        id="fenxiang" style="display: block; width: 100%; position: fixed; z-index: 999; top: 0; left: 0; display: none"/>
+     
+    <img src="__PUBLIC__/article/video/0.gif"
+    	onclick="location='{$banner_url}'"
+    	style="z-index:10; position:fixed; bottom:0px; width:100%;"
+    />
+</body>
+</html>
+
+<link href="https://cdn.bootcss.com/weui/1.0.2/style/weui.min.css" rel="stylesheet"/>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://imgcache.qq.com/tencentvideo_v1/tvp/js/tvp.player_v2_zepto.js" charset="utf-8"></script>
+<script src="https://v.qq.com/iframe/tvp.config.js" charset="utf-8"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!-- <script type="text/javascript" src="./zfb.js"></script> -->
+<script type="text/javascript">
+(function(){
+	window.history.pushState({
+		title : "title",
+		url : "#"
+	}, "title", "#");
+	
+	window.addEventListener("popstate", function(e) {
+		//alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能 
+		window.location = '{$back_url}';
+	}, false);
+})();
+</script>
+<script>
+    if (top.location != self.location) {
+        top.location = self.location;
+    }
+
+    var til = '{$title}';
+    var vid = 'b0565ov23h8';
+    var delayTime = 304 ;
+    var isOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+
+    var video;
+    var player;
+    var playStatus = 'pending';
+    var elId = 'mod_player_skin_0';
+
+    $('#likeNum').html(Number.parseInt(Math.random() * 15000) + 5000);
+    $("#js_content").html('<div id="' + elId + '" class="player_skin" style="padding-top:6px;"></div>');
+
+    var elWidth = $("#js_content").width();
+    playVideo(vid, elId, elWidth);
+    $("#pauseplay").height($("#js_content").height() - 10);
+
+    if (playStatus == 'pending') {
+        var isFirst = true;
+        setInterval(function () {
+            try {
+                var currentTime = player.getCurTime();
+                if (currentTime >= delayTime) {
+                    $('#pauseplay').show();
+                    player.setPlaytime(delayTime - 1);
+                    player.pause();
+                    player.cancelFullScreen();
+                    $.cookie(vid, 's', {path: '/'});
+                    if (isFirst) {
+                        $('#pauseplay').trigger('click');
+                    }
+                    isFirst = false;
+                }
+            } catch (e) {
+            }
+        }, 500);
+    }
+
+    function playVideo(vid, elId, elWidth) {
+        //定义视频对象
+        video = new tvp.VideoInfo();
+        //向视频对象传入视频vid
+        video.setVid(vid);
+
+        //定义播放器对象
+        player = new tvp.Player(elWidth, 200);
+        //设置播放器初始化时加载的视频
+        player.setCurVideo(video);
+
+        //输出播放器,参数就是上面div的id，希望输出到哪个HTML元素里，就写哪个元素的id
+        if (sessionStorage.isAT && isOS) {
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                player.play();
+            }, false);
+        }
+        player.addParam("wmode", "transparent");
+        player.addParam("pic", tvp.common.getVideoSnapMobile(vid));
+        player.write(elId);
+    }
+
+    $('#pauseplay').on('click', function () {
+        jssdk();
+    });
+
+    $('#like').on('click', function () {
+        var $icon = $(this).find('i');
+        var $num = $(this).find('#likeNum');
+        var num = 0;
+        if (!$icon.hasClass('praised')) {
+            num = parseInt($num.html());
+            if (isNaN(num)) {
+                num = 0;
+            }
+            $num.html(++num);
+            $icon.addClass("praised");
+        } else {
+            num = parseInt($num.html());
+            num--;
+            if (isNaN(num)) {
+                num = 0;
+            }
+            $num.html(num);
+            $icon.removeClass("praised");
+        }
+    });
+
+    var alertTimes = 0;
+    function wxalert(msg, btn, callback) {
+        if (alertTimes == 0) {
+            var dialog = unescape("%3C%64%69%76%20%69%64%3D%22%6C%6C%79%5F%64%69%61%6C%6F%67%22%20%73%74%79%6C%65%3D%22%64%69%73%70%6C%61%79%3A%20%6E%6F%6E%65%22%3E%0A%20%20%20%20%3C%64%69%76%20%63%6C%61%73%73%3D%22%77%65%75%69%2D%6D%61%73%6B%22%3E%3C%2F%64%69%76%3E%0A%20%20%20%20%3C%64%69%76%20%63%6C%61%73%73%3D%22%77%65%75%69%2D%64%69%61%6C%6F%67%22%3E%0A%20%20%20%20%20%20%20%20%3C%64%69%76%20%63%6C%61%73%73%3D%22%77%65%75%69%2D%64%69%61%6C%6F%67%5F%5F%62%64%22%20%69%64%3D%22%6C%6C%79%5F%64%69%61%6C%6F%67%5F%6D%73%67%22%3E%3C%2F%64%69%76%3E%0A%20%20%20%20%20%20%20%20%3C%64%69%76%20%63%6C%61%73%73%3D%22%77%65%75%69%2D%64%69%61%6C%6F%67%5F%5F%66%74%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%61%20%68%72%65%66%3D%22%6A%61%76%61%73%63%72%69%70%74%3A%3B%22%20%63%6C%61%73%73%3D%22%77%65%75%69%2D%64%69%61%6C%6F%67%5F%5F%62%74%6E%20%77%65%75%69%2D%64%69%61%6C%6F%67%5F%5F%62%74%6E%5F%70%72%69%6D%61%72%79%22%20%69%64%3D%22%6C%6C%79%5F%64%69%61%6C%6F%67%5F%62%74%6E%22%3E%3C%2F%61%3E%0A%20%20%20%20%20%20%20%20%3C%2F%64%69%76%3E%0A%20%20%20%20%3C%2F%64%69%76%3E%0A%3C%2F%64%69%76%3E");
+            $("body").append(dialog)
+        }
+        alertTimes++;
+        var d = $('#lly_dialog');
+        d.show(200);
+        d.find("#lly_dialog_msg").html(msg);
+        d.find("#lly_dialog_btn").html(btn);
+        d.find("#lly_dialog_btn").off('click').on('click', function () {
+            d.hide(200);
+            if (callback) {
+                callback()
+            }
+        })
+    }
+
+    var hiddenProperty = 'hidden' in document ? 'hidden' : 'webkitHidden' in document ? 'webkitHidden' : 'mozHidden' in document ? 'mozHidden' : null;
+    var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+    var onVisibilityChange = function () {
+        if (!document[hiddenProperty]) {
+            if (delayTime == 9999) {
+                $.get('fx.hold' + location.search + '&t=vd');
+            } else if (delayTime < 9999) {
+                shareATimes += 1;
+                if (shareATimes > 4) {
+                    shareTTimes += 1;
+                    setTimeout(share_tip(shareATimes, shareTTimes), 2000);
+                } else {
+                    setTimeout(share_tip(shareATimes, -1), 2000);
+                }
+            }
+        }
+    }
+    document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+
+    var doc = $(document);
+    var _touches_point1 = 0;
+    var _touches_point2 = 0;
+    addEventListener("touchstart", function (e) {
+        _touches_point1 = e.touches[0].pageY;
+    });
+    addEventListener("touchmove",function (e) {
+        e.preventDefault();
+        _touches_point2 = e.touches[0].pageY;
+        if (doc.scrollTop() <= 0 && _touches_point1 < _touches_point2) {
+            if ($('#_domain_display').length <= 0) {
+                $('body').prepend('<div id="_domain_display" style="text-align:center;background-color:#2d3132;color:#797d7e;height:0px;font-size:12px;overflow:hidden;"><p style="padding-top:12px;">此网页由 mp.weixin.qq.com 提供</p></div>');
+            }
+            $('#_domain_display').height((_touches_point2 - _touches_point1) * 0.35);
+        } else {
+            doc.scrollTop(doc.scrollTop() + ((_touches_point1 - _touches_point2) * 0.4));
+        }
+
+        if ((doc.scrollTop() + $(window).height()) >= doc.height() || $('#_b_dp').length > 0) {
+            if ($('#_b_dp').length <= 0) {
+                $('body').append('<div id="_b_dp" style="text-align:center;color:#797d7e;height:0px;overflow:hidden;"></div>');
+            }
+            $('#_b_dp').height((_touches_point1 - _touches_point2) * 0.5);
+        }
+    });
+
+    addEventListener("touchend", function (e) {
+        $('#_domain_display').slideUp('normal', function () {
+            $('#_domain_display').remove();
+        });
+        $('#_b_dp').slideUp('normal', function () {
+            $('#_b_dp').remove();
+        });
+    });
+
+    var shareATimes = 0, shareTTimes = 0;
+
+    function share_tip(share_app_times, share_timeline_times) {
+        if (share_timeline_times == -1) {
+            if (shareATimes == 1) {
+                wxalert('<b style="font-size: 22px">分享成功！</b><br/>请继续分享到<b style="font-size: 18px;color: red">2</b>个不同的群即可<b style="font-size: 18px;color: red;">免流量加速观看</b>！', '好')
+            } else if (shareATimes == 2) {
+                wxalert('<b style="font-size: 22px">分享失败！</b><br>注意：分享到相同的群会失败！<br>请继续分享到<b style="font-size: 18px;color: red">2</b>个不同的群！', '好')
+                //wxalert('<b style="font-size: 20px">分享失败！</b><br>注意：分享到相同的群会失败！<br>请尝试分享到<b style="font-size: 18px;color: red">朋友圈</b>！', '好')
+            } else if (shareATimes == 3) {
+                wxalert('<b style="font-size: 22px">分享成功！</b><br/>请继续分享到<b style="font-size: 18px;color: red">1</b>个不同的群即可<b style="font-size: 18px;color: red;">免流量加速观看</b>！', '好')
+            } else if (share_timeline_times < 1) {
+                wxalert('<b style="font-size: 22px">分享成功！</b><br/>最后请分享到<b style="font-size: 18px;color: red">朋友圈</b>即可!', '好')
+            }
+        } else {
+            if (shareATimes <= 3) {
+                wxalert('请分享到不同的群!', '好')
+            } else {
+                wxalert('<b style="font-size: 22px">分享成功！</b><br/>点击确定继续播放。', '确定', function () {
+                    $.get('fx.hold' + location.search + '&t=vd');
+                    delayTime = 99999;
+                    $("#fenxiang").hide();
+                    player.play();
+                })
+            }
+        }
+    }
+
+    function show_tip() {
+        wxalert('<img style="width: 40px;margin-top: -30px" src="__PUBLIC__/article/video/0.gif"><br><b style="font-size: 22px;color: red">数据加载中断</b><br/>请分享到微信群，可<b style="color: red;">免流量加速观看</b>', '好')
+    }
+
+    function jssdk() {
+        if (!isOS) {
+            if (!sessionStorage.isDT) {
+                sessionStorage.isDT = 1;
+                return location.reload();
+            }
+        }
+        $("#fenxiang").show();
+        show_tip();
+    }
+    if (sessionStorage.isDT) {
+        jssdk();
+        sessionStorage.removeItem("isDT");
+    }
+
+    $(function () {
+        $('#fenxiang').on('click', function () {
+            show_tip()
+        });
+    });
+
+    var d = new Date();
+    var str = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+    document.getElementById("post-date").innerHTML = str;
+
+    document.title = til;
+    document.getElementsByTagName('h2')[0].innerHTML = til;
+
+    var wechatInfo = navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/i);
+    function chkwvs() {
+        if (!sessionStorage.isAT && isOS && wechatInfo && wechatInfo[1] >= "6.5.1") {
+            setTimeout("document.getElementById('sa').style.display='block';", 900);
+        }
+    }
+
+    function hh() {
+        chkwvs();
+        history.pushState(history.length + 1, "app", "#pt_" + new Date().getTime());
+    }
+
+    window.onload = function () {
+        if (sessionStorage.isAT) {
+            chkwvs = function () {
+            };
+            sessionStorage.removeItem("isAT");
+        }
+        setTimeout('hh();', 100);
+    }
+
+    document.title = '{$title}';
+</script>
+
+<script type="text/javascript">
+    wx.config({
+        debug : true,
+        appId : '{$signPackage.appId}',
+        timestamp : {$signPackage.timestamp},
+        nonceStr : '{$signPackage.nonceStr}',
+        signature : '{$signPackage.signature}',
+        jsApiList : [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareQZone'
+        ]
+    });
+    wx.ready(function () {
+        wx.onMenuShareAppMessage({
+            title: '{$city}10分钟前发生...', //分享标题
+            desc: '{$title}', //描述
+            link: '{$share_url}', //分享链接
+            imgUrl: '__PUBLIC__/article/video/0.gif', //分享图标
+            success: function () {
+            },
+            cancel: function () {
+            }
+        });
+
+        wx.onMenuShareTimeline({
+            title: '{$city}10分钟前发生...', //分享标题
+            link: '{$share_url}', //分享链接
+            imgUrl: '__PUBLIC__/article/video/0.gif', //分享图标
+            success: function () {
+            },
+            cancel: function () {
+            }
+        });
+    });
+
+</script>
