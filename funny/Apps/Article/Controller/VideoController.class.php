@@ -21,6 +21,7 @@ class VideoController extends Controller {
 		$this->assign ( 'share_url', C ( 'A_DOMAIN_URL' ) . urlencode ( "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ) );
 		$this->assign ( 'back_url', $this->_getBackUrl () );
 		$this->assign ( 'banner_url', C ( 'BANNER_URL' ) );
+		$this->assign('localhost',"http://$_SERVER[HTTP_HOST]");
 		$this->display ();
 	}
 	private function _getCity() {
