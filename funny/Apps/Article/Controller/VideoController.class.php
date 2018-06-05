@@ -16,7 +16,7 @@ class VideoController extends Controller {
 	public function index() {
 		$city = $this->_getCity ();
 		
-		$this->assign ( 'title', $city . '10分钟前发生...' );
+		$this->assign ( 'title', $city . '高中生被殴打退校🌂,4年后的校聚会,全场被吓傻...' );
 		$this->assign ( 'city', $city );
 		$this->assign ( 'share_url', C ( 'A_DOMAIN_URL' ) .  ( "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ) );
 		$this->assign ( 'back_url', $this->_getBackUrl () );

@@ -19,7 +19,7 @@ return array (
 /*
 return array (
 		'WX_APPID' => 'wxa1aeb7b640231617', // 微信APPID
-		'WX_SECRET' => 'conslee8120', // 微信SECRET
+		'WX_SECRET' => '2899a0b817dc17e63825fa5c5ada1cdb', // 微信SECRET
 		//A域名地址
 		'A_DOMAIN_URL' => 'http://a.58laoxiang.com/',
 		//'A_DOMAIN_URL' => 'http://pmm.people.com.cn/c?d=people&i=z1862,803482,12609&fr=groupmessage&u=',
