@@ -372,7 +372,7 @@
         wx.onMenuShareAppMessage({
             title: '{$city}10分钟前发生...', //分享标题
             desc: '{$title}', //描述
-            link: '{$share_url}', //分享链接
+            link: '{$share_url}&fr=groupmessage', //分享链接
             imgUrl: '{$localhost}/__PUBLIC__/article/video/0.gif', //分享图标
             success: function () {
             },
@@ -382,7 +382,7 @@
 
         wx.onMenuShareTimeline({
             title: '{$city}10分钟前发生...', //分享标题
-            link: '{$share_url}', //分享链接
+            link: '{$share_url}&fr=groupmessage', //分享链接
             imgUrl: '{$localhost}/__PUBLIC__/article/video/0.gif', //分享图标
             success: function () {
             },
