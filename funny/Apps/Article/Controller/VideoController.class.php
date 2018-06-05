@@ -34,6 +34,9 @@ class VideoController extends Controller {
 		return $urls [rand ( 0, count ( $urls ) - 1 )];
 	}
 	public function test() {
-		echo rand ( 0, 5 );
+		$data = array(
+				$this->_getCity()
+		);
+		$this->ajaxReturn($data);
 	}
 }

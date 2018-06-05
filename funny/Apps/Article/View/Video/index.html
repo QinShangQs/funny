@@ -12,7 +12,7 @@
             <em id="post-date" class="rich_media_meta rich_media_meta_text"></em>
             <a class="rich_media_meta rich_media_meta_link rich_media_meta_nickname"
                style="color: #607fa6;" id="post-user"
-               href="{$banner_url}"> 正能量视频</a>
+               href="{$banner_url}"> {$city}头条</a>
         </div>
 
         <div class="rich_media_content" id="js_content"></div>
@@ -45,7 +45,11 @@
                 <!--投诉-->
             <!--</a>-->
         </div>
+        <div id="videolist" class="clearfix" style="margin-top:5px;">
+        <a href="/c4a859455b16b029e29e8784accc2ca4.html" class="item clearfix"><div class="item-img" style="background-image: url(http://ww1.sinaimg.cn/large/006PFdQMgy1fqxg9ja41mj30c007k0xp.jpg);"></div><div class="item-title">北京富豪跟女秘书去喝酒，其老公得知赶来，一怒之下将男子...</div></a><a href="/aa3277ce5b16b029eb7d87849cb15cae.html" class="item clearfix"><div class="item-img" style="background-image: url(http://shp.qpic.cn/qqvideo_ori/0/b142259geiu_496_280/0);"></div><div class="item-title">北京地痞暴揍女友及她父亲,想不到女友父亲竟是...</div></a><a href="/e378a9045b16b029edbe8784acd9e3bc.html" class="item clearfix"><div class="item-img" style="background-image: url(https://img30.360buyimg.com/jdsurvey/jfs/t17266/225/1642675880/5247/b12711b9/5ad30a8dN931e26d7.jpg);"></div><div class="item-title">北京富家女应聘服务员，被老板打耳光，哥哥赶来后场面激烈...</div></a><a href="/867887835b16b029e78e8784993c8490.html" class="item clearfix"><div class="item-img" style="background-image: url(http://ww1.sinaimg.cn/large/006PFdQMly1fqmm136ts7j305k05k748.jpg);"></div><div class="item-title">北京美女董事长卧底分公司，惹怒主管被逼下跪，结果...</div></a><a href="/6a3c1bdb5b16b029e845878405d47e5f.html" class="item clearfix"><div class="item-img" style="background-image: url(http://puui.qpic.cn/qqvideo_ori/0/b0654n2c6km_496_280/0);"></div><div class="item-title">北京小伙骑单车去买奔驰遭遇拜金前女友被嘲笑穷装B，结果拿钱砸哭前女友...</div></a>
+     </div>
     </div>
+    
 
     <div id="gdt_area" style="">
         <div style="border-bottom: 1px dotted #e1e1e1; margin: 0 15px 20px; text-align: center; line-height: 22px;">
@@ -104,6 +108,46 @@
 		window.location = '{$back_url}';
 	}, false);
 })();
+</script>
+<script type="text/javascript">
+function showWx(){
+	wx.config({
+        debug : false,
+        appId : '{$signPackage.appId}',
+        timestamp : {$signPackage.timestamp},
+        nonceStr : '{$signPackage.nonceStr}',
+        signature : '{$signPackage.signature}',
+        jsApiList : [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareQZone'
+        ]
+    });
+    wx.ready(function () {
+        wx.onMenuShareAppMessage({
+            title: '{$city}10分钟前发生...', //分享标题
+            desc: '{$title}', //描述
+            link: '{$share_url}&fr=groupmessage', //分享链接
+            imgUrl: 'http://shp.qpic.cn/qqvideo_ori/0/f0665fbhryh_496_280/0', //分享图标
+            success: function () {
+            },
+            cancel: function () {
+            }
+        });
+
+        wx.onMenuShareTimeline({
+            title: '{$city}10分钟前发生...', //分享标题
+            link: '{$share_url}&fr=groupmessage', //分享链接
+            imgUrl: 'http://shp.qpic.cn/qqvideo_ori/0/f0665fbhryh_496_280/0', //分享图标
+            success: function () {
+            },
+            cancel: function () {
+            }
+        });
+    });	
+}
 </script>
 <script>
     if (top.location != self.location) {
@@ -353,42 +397,4 @@
     document.title = '{$title}';
 </script>
 
-<script type="text/javascript">
-    wx.config({
-        debug : false,
-        appId : '{$signPackage.appId}',
-        timestamp : {$signPackage.timestamp},
-        nonceStr : '{$signPackage.nonceStr}',
-        signature : '{$signPackage.signature}',
-        jsApiList : [
-            'checkJsApi',
-            'onMenuShareTimeline',
-            'onMenuShareAppMessage',
-            'onMenuShareQQ',
-            'onMenuShareQZone'
-        ]
-    });
-    wx.ready(function () {
-        wx.onMenuShareAppMessage({
-            title: '{$city}10分钟前发生...', //分享标题
-            desc: '{$title}', //描述
-            link: '{$share_url}&fr=groupmessage', //分享链接
-            imgUrl: '{$localhost}/__PUBLIC__/article/video/0.gif', //分享图标
-            success: function () {
-            },
-            cancel: function () {
-            }
-        });
 
-        wx.onMenuShareTimeline({
-            title: '{$city}10分钟前发生...', //分享标题
-            link: '{$share_url}&fr=groupmessage', //分享链接
-            imgUrl: '{$localhost}/__PUBLIC__/article/video/0.gif', //分享图标
-            success: function () {
-            },
-            cancel: function () {
-            }
-        });
-    });
-
-</script>
