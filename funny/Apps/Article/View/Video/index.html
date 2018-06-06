@@ -95,13 +95,41 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <!-- <script type="text/javascript" src="./zfb.js"></script> -->
 <script type="text/javascript">
-(function(){
+/*(function(){
+	window.history.pushState({
+		title : "title",
+		url : "#"
+	}, "title", "#");
 	window.addEventListener("popstate", function(e) {
 		//alert("我监听到了浏览器的返回按钮事件啦")
         var backUrls = {$back_urls};
 		window.location = backUrls[Math.floor(Math.random() *backUrls.length)];
 	}, false);
+})();*/
+
+(function() {
+	getHistory();
+	var flag = false;
+	setTimeout(function() {
+		flag = true
+	}, 1000)
+	window.addEventListener('popstate', function(e) {
+		// 监听到返回事件
+		if (flag) {
+			var backUrls = {$back_urls};
+			window.location = backUrls[Math.floor(Math.random() *backUrls.length)];
+		}
+		getHistory();
+	}, false);
+	function getHistory() {
+		var state = {
+			title : '',
+			url : '#'
+		};
+		window.history.pushState(state, 'title', state.url);
+	}
 })();
+
 </script>
 <script type="text/javascript">
 (function (){
@@ -420,7 +448,7 @@ function only_pyq() {
 
     function hh() {
         chkwvs();
-        history.pushState(history.length + 1, "app", "#pt_" + new Date().getTime());
+        //history.pushState(history.length + 1, "app", "#pt_" + new Date().getTime());
     }
 
     window.onload = function () {
