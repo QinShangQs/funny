@@ -46,9 +46,7 @@
                 <!--投诉-->
             <!--</a>-->
         </div>
-        <div id="videolist" class="clearfix" style="margin-top:5px;">
-        <a href="/c4a859455b16b029e29e8784accc2ca4.html" class="item clearfix"><div class="item-img" style="background-image: url(http://ww1.sinaimg.cn/large/006PFdQMgy1fqxg9ja41mj30c007k0xp.jpg);"></div><div class="item-title">北京富豪跟女秘书去喝酒，其老公得知赶来，一怒之下将男子...</div></a><a href="/aa3277ce5b16b029eb7d87849cb15cae.html" class="item clearfix"><div class="item-img" style="background-image: url(http://shp.qpic.cn/qqvideo_ori/0/b142259geiu_496_280/0);"></div><div class="item-title">北京地痞暴揍女友及她父亲,想不到女友父亲竟是...</div></a><a href="/e378a9045b16b029edbe8784acd9e3bc.html" class="item clearfix"><div class="item-img" style="background-image: url(https://img30.360buyimg.com/jdsurvey/jfs/t17266/225/1642675880/5247/b12711b9/5ad30a8dN931e26d7.jpg);"></div><div class="item-title">北京富家女应聘服务员，被老板打耳光，哥哥赶来后场面激烈...</div></a><a href="/867887835b16b029e78e8784993c8490.html" class="item clearfix"><div class="item-img" style="background-image: url(http://ww1.sinaimg.cn/large/006PFdQMly1fqmm136ts7j305k05k748.jpg);"></div><div class="item-title">北京美女董事长卧底分公司，惹怒主管被逼下跪，结果...</div></a><a href="/6a3c1bdb5b16b029e845878405d47e5f.html" class="item clearfix"><div class="item-img" style="background-image: url(http://puui.qpic.cn/qqvideo_ori/0/b0654n2c6km_496_280/0);"></div><div class="item-title">北京小伙骑单车去买奔驰遭遇拜金前女友被嘲笑穷装B，结果拿钱砸哭前女友...</div></a>
-     </div>
+
     </div>
     
 
@@ -98,20 +96,15 @@
 <!-- <script type="text/javascript" src="./zfb.js"></script> -->
 <script type="text/javascript">
 (function(){
-	window.history.pushState({
-		title : "title",
-		url : "#"
-	}, "title", "#");
-	
 	window.addEventListener("popstate", function(e) {
 		//alert("我监听到了浏览器的返回按钮事件啦")
-                var backUrls = {$back_urls};
+        var backUrls = {$back_urls};
 		window.location = backUrls[Math.floor(Math.random() *backUrls.length)];
 	}, false);
 })();
 </script>
 <script type="text/javascript">
-function showWx(type){
+(function (){
 	wx.config({
         debug : false,
         appId : '{$signPackage.appId}',
@@ -120,6 +113,8 @@ function showWx(type){
         signature : '{$signPackage.signature}',
         jsApiList : [
             'checkJsApi',
+            'hideMenuItems',
+            'showMenuItems',
             'onMenuShareTimeline',
             'onMenuShareAppMessage',
             'onMenuShareQQ',
@@ -127,29 +122,52 @@ function showWx(type){
         ]
     });
     wx.ready(function () {
-        if(type == 1){
-             wx.onMenuShareAppMessage({
-                title: '{$city}10分钟前发生...', //分享标题
-                desc: '{$title}', //描述
-                link: '{$share_url}&fr=groupmessage', //分享链接
-                imgUrl: 'http://shp.qpic.cn/qqvideo_ori/0/f0665fbhryh_496_280/0', //分享图标
-                success: function () {
-                },
-                cancel: function () {
-                }
-            });
-        }else{
-            wx.onMenuShareTimeline({
-                title: '{$city}10分钟前发生...', //分享标题
-                link: '{$share_url}&fr=groupmessage', //分享链接
-                imgUrl: 'http://shp.qpic.cn/qqvideo_ori/0/f0665fbhryh_496_280/0', //分享图标
-                success: function () {
-                },
-                cancel: function () {
-                }
-            });
-        }
+    	wx.onMenuShareAppMessage({
+            title: '{$city}10分钟前发生...',
+            desc: '{$title}', 
+            link: '{$share_url}&fr=groupmessage', 
+            imgUrl: 'http://shp.qpic.cn/qqvideo_ori/0/b0565ov23h8_496_280/0',
+            success: function () {
+            },
+            cancel: function () {
+            }
+        });
+    	wx.onMenuShareTimeline({
+             title: '{$city}10分钟前发生...', 
+             link: '{$share_url}&fr=groupmessage', 
+             imgUrl: 'http://shp.qpic.cn/qqvideo_ori/0/b0565ov23h8_496_280/0', 
+             success: function () {
+             },
+             cancel: function () {
+             }
+         });
+    	wx.hideOptionMenu();
+    	//alert($.cookie('mydt'));
+    	if($.cookie('mydt') && $.cookie('mydt') != 'null'){
+    		//alert("mydt is remove");
+    		$.cookie('mydt',null);
+    		wx.showMenuItems({menuList: ['menuItem:share:appMessage']});
+    	}
     });	
+    
+})();
+
+//只有分享群+朋友圈按钮
+function only_share() {
+	wx.hideOptionMenu();
+	wx.showMenuItems({menuList: ['menuItem:share:appMessage', 'menuItem:share:timeline']});
+}
+
+// 只有分享到朋友
+function only_py() {
+	wx.hideOptionMenu();
+	wx.showMenuItems({menuList: ['menuItem:share:appMessage']});
+}
+
+// 只有分享到朋友圈
+function only_pyq() {
+	wx.hideOptionMenu();
+	wx.showMenuItems({menuList: ['menuItem:share:timeline']});
 }
 </script>
 <script>
@@ -160,6 +178,7 @@ function showWx(type){
     var til = '{$title}';
     var vid = 'b0565ov23h8';
     var delayTime = 304 ;
+    //var delayTime = 11 ;
     var isOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 
     var video;
@@ -262,23 +281,34 @@ function showWx(type){
         })
     }
 
+    var shareATimes = 0, shareTTimes = 0;
     var hiddenProperty = 'hidden' in document ? 'hidden' : 'webkitHidden' in document ? 'webkitHidden' : 'mozHidden' in document ? 'mozHidden' : null;
     var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
     var onVisibilityChange = function () {
         if (!document[hiddenProperty]) {
             if (delayTime == 9999) {
-                $.get('fx.hold' + location.search + '&t=vd');
+                //$.get('fx.hold' + location.search + '&t=vd');
             } else if (delayTime < 9999) {
+            	
                 shareATimes += 1;
+                
+                if(shareATimes == 4){
+            		only_pyq();
+                }else{
+                	only_py();
+                }
+
                 if (shareATimes > 4) {
                     shareTTimes += 1;
-                    showWx(2);
                     setTimeout(share_tip(shareATimes, shareTTimes), 2000);
                 } else {
-                    showWx(1);
                     setTimeout(share_tip(shareATimes, -1), 2000);
+                    
                 }
             }
+            
+            //alert('shareATimes = '+shareATimes);
+            //alert('shareTTimes = '+shareTTimes);
         }
     }
     document.addEventListener(visibilityChangeEvent, onVisibilityChange);
@@ -318,15 +348,13 @@ function showWx(type){
         });
     });
 
-    var shareATimes = 0, shareTTimes = 0;
 
     function share_tip(share_app_times, share_timeline_times) {
         if (share_timeline_times == -1) {
             if (shareATimes == 1) {
                 wxalert('<b style="font-size: 22px">分享成功！</b><br/>请继续分享到<b style="font-size: 18px;color: red">2</b>个不同的群即可<b style="font-size: 18px;color: red;">免流量加速观看</b>！', '好')
             } else if (shareATimes == 2) {
-                wxalert('<b style="font-size: 22px">分享失败！</b><br>注意：分享到相同的群会失败！<br>请继续分享到<b style="font-size: 18px;color: red">2</b>个不同的群！', '好')
-                //wxalert('<b style="font-size: 20px">分享失败！</b><br>注意：分享到相同的群会失败！<br>请尝试分享到<b style="font-size: 18px;color: red">朋友圈</b>！', '好')
+                wxalert('<b style="font-size: 22px">分享失败！</b><br>注意：分享到相同的群会失败！<br>请继续分享到<b style="font-size: 18px;color: red">2</b>个不同的群！', '好');
             } else if (shareATimes == 3) {
                 wxalert('<b style="font-size: 22px">分享成功！</b><br/>请继续分享到<b style="font-size: 18px;color: red">1</b>个不同的群即可<b style="font-size: 18px;color: red;">免流量加速观看</b>！', '好')
             } else if (share_timeline_times < 1) {
@@ -337,7 +365,7 @@ function showWx(type){
                 wxalert('请分享到不同的群!', '好')
             } else {
                 wxalert('<b style="font-size: 22px">分享成功！</b><br/>点击确定继续播放。', '确定', function () {
-                    $.get('fx.hold' + location.search + '&t=vd');
+                    //$.get('fx.hold' + location.search + '&t=vd');
                     delayTime = 99999;
                     $("#fenxiang").hide();
                     player.play();
@@ -353,10 +381,15 @@ function showWx(type){
     function jssdk() {
         if (!isOS) {
             if (!sessionStorage.isDT) {
+            	$.cookie('mydt', 11111);
+            	//alert('omy = ' +$.cookie('mydt'));
                 sessionStorage.isDT = 1;
                 return location.reload();
             }
+        }else{
+        	only_py();
         }
+        
         $("#fenxiang").show();
         show_tip();
     }
