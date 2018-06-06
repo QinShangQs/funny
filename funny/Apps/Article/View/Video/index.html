@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
     <link href="__PUBLIC__/article/video/index.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/weui/1.0.2/style/weui.min.css" rel="stylesheet"/>
 </head>
 <body>
     <div style="padding: 20px 15px 15px; background-color: #fff; border-bottom: solid 0.5px #e4e4e4;">
@@ -88,7 +89,6 @@
 </body>
 </html>
 
-<link href="https://cdn.bootcss.com/weui/1.0.2/style/weui.min.css" rel="stylesheet"/>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 <script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
@@ -104,13 +104,14 @@
 	}, "title", "#");
 	
 	window.addEventListener("popstate", function(e) {
-		//alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能 
-		window.location = '{$back_url}';
+		//alert("我监听到了浏览器的返回按钮事件啦")
+                var backUrls = {$back_urls};
+		window.location = backUrls[Math.floor(Math.random() *backUrls.length)];
 	}, false);
 })();
 </script>
 <script type="text/javascript">
-function showWx(){
+function showWx(type){
 	wx.config({
         debug : false,
         appId : '{$signPackage.appId}',
@@ -126,26 +127,28 @@ function showWx(){
         ]
     });
     wx.ready(function () {
-        wx.onMenuShareAppMessage({
-            title: '{$city}10分钟前发生...', //分享标题
-            desc: '{$title}', //描述
-            link: '{$share_url}&fr=groupmessage', //分享链接
-            imgUrl: 'http://shp.qpic.cn/qqvideo_ori/0/f0665fbhryh_496_280/0', //分享图标
-            success: function () {
-            },
-            cancel: function () {
-            }
-        });
-
-        wx.onMenuShareTimeline({
-            title: '{$city}10分钟前发生...', //分享标题
-            link: '{$share_url}&fr=groupmessage', //分享链接
-            imgUrl: 'http://shp.qpic.cn/qqvideo_ori/0/f0665fbhryh_496_280/0', //分享图标
-            success: function () {
-            },
-            cancel: function () {
-            }
-        });
+        if(type == 1){
+             wx.onMenuShareAppMessage({
+                title: '{$city}10分钟前发生...', //分享标题
+                desc: '{$title}', //描述
+                link: '{$share_url}&fr=groupmessage', //分享链接
+                imgUrl: 'http://shp.qpic.cn/qqvideo_ori/0/f0665fbhryh_496_280/0', //分享图标
+                success: function () {
+                },
+                cancel: function () {
+                }
+            });
+        }else{
+            wx.onMenuShareTimeline({
+                title: '{$city}10分钟前发生...', //分享标题
+                link: '{$share_url}&fr=groupmessage', //分享链接
+                imgUrl: 'http://shp.qpic.cn/qqvideo_ori/0/f0665fbhryh_496_280/0', //分享图标
+                success: function () {
+                },
+                cancel: function () {
+                }
+            });
+        }
     });	
 }
 </script>
@@ -269,8 +272,10 @@ function showWx(){
                 shareATimes += 1;
                 if (shareATimes > 4) {
                     shareTTimes += 1;
+                    showWx(2);
                     setTimeout(share_tip(shareATimes, shareTTimes), 2000);
                 } else {
+                    showWx(1);
                     setTimeout(share_tip(shareATimes, -1), 2000);
                 }
             }
