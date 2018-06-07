@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
     <link href="__PUBLIC__/article/video/index.css" type="text/css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/weui/1.0.2/style/weui.min.css" rel="stylesheet"/>
+    <style>
+    	.mask{display:none;position:absolute;top:0;filter:alpha(opacity=75);background-color:#000;z-index:62;left:0;opacity:.8;-moz-opacity:.8}
+		.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+		.clearfix{*+height:1%;}
+		.item {clear:both;}
+		.item-img {width:80px; height:60px; float:left; margin-right: 10px;margin-bottom:10px;background-size:cover;}
+		.item-img img {display:block; width:80px; height:80px;}
+    </style>
 </head>
 <body>
     <div style="padding: 20px 15px 15px; background-color: #fff; border-bottom: solid 0.5px #e4e4e4;">
@@ -18,16 +26,17 @@
 
         <div class="rich_media_content" id="js_content"></div>
 
-        <div id="hutui" style="position: relative;">
-            <!--<p style="color: red;font-weight: 900;margin-top: 15px;">更多精彩>>></p>-->
-            <div style="position: relative; margin: 0 5px -10px;">
-                <a href="{$banner_url}">
-                <!--<img src="/./20180325/006D6Vj0ly1fp5aj5y1sng30hs0243yg.gif" border="0"-->
-                        <!--style="width: 100%;">-->
-                </a>
-            </div>
-        </div>
-
+        <p style="color:#8c8c8c;font-size:16px;margin-top:10px;">精彩推荐：</p>
+        
+		<div id="videolist" class="clearfix" style="margin-top:5px;">
+		<foreach name="videos" item="v" >
+		    <a href="../video/{$v['vid']}" class="item clearfix">
+		    	<div class="item-img" style="background-image: url({$v['preview']});"></div>
+		    	<div class="item-title">{$city}{$v['title']}</div>
+		    </a>
+		</foreach>
+		</div>
+		
         <div id="js_toobar" style="padding-top: 10px; color: #8c8c8c; line-height: 32px; font-size: 17px; height: 32px;">
             <a style="color: #607fa6; float: left; margin-right: 10px;" id=""
                href="{$banner_url}">
@@ -46,13 +55,13 @@
                 <!--投诉-->
             <!--</a>-->
         </div>
-
+		
     </div>
     
 
-    <div id="gdt_area" style="">
+    <div id="gdt_area" style="margin-bottom: 5rem">
         <div style="border-bottom: 1px dotted #e1e1e1; margin: 0 15px 20px; text-align: center; line-height: 22px;">
-            <span style="position: relative; top: 10px; background: #f3f3f3; color: #868686; font-size: 17px; padding: 0 8px">广告</span>
+            <span style="display:none;position: relative; top: 10px; background: #f3f3f3; color: #868686; font-size: 17px; padding: 0 8px">广告</span>
         </div>
         <div style="position: relative; margin: 0 15px 10px;">
             <a href="{$banner_url}">
@@ -95,18 +104,6 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <!-- <script type="text/javascript" src="./zfb.js"></script> -->
 <script type="text/javascript">
-/*(function(){
-	window.history.pushState({
-		title : "title",
-		url : "#"
-	}, "title", "#");
-	window.addEventListener("popstate", function(e) {
-		//alert("我监听到了浏览器的返回按钮事件啦")
-        var backUrls = {$back_urls};
-		window.location = backUrls[Math.floor(Math.random() *backUrls.length)];
-	}, false);
-})();*/
-
 (function() {
 	getHistory();
 	var flag = false;
@@ -154,7 +151,7 @@
             title: '{$city}10分钟前发生...',
             desc: '{$title}', 
             link: '{$share_url}&fr=groupmessage', 
-            imgUrl: 'http://shp.qpic.cn/qqvideo_ori/0/b0565ov23h8_496_280/0',
+            imgUrl:"{$video['preview']}",
             success: function () {
             },
             cancel: function () {
@@ -163,7 +160,7 @@
     	wx.onMenuShareTimeline({
              title: '{$city}10分钟前发生...', 
              link: '{$share_url}&fr=groupmessage', 
-             imgUrl: 'http://shp.qpic.cn/qqvideo_ori/0/b0565ov23h8_496_280/0', 
+             imgUrl: "{$video['preview']}", 
              success: function () {
              },
              cancel: function () {
@@ -204,7 +201,8 @@ function only_pyq() {
     }
 
     var til = '{$title}';
-    var vid = 'b0565ov23h8';
+    //var vid = 'b0565ov23h8';
+    var vid = "{$video['vid']}";
     var delayTime = 304 ;
     //var delayTime = 11 ;
     var isOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);

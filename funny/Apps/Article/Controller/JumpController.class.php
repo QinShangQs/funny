@@ -15,16 +15,7 @@ class JumpController extends Controller {
 		if (empty ( $to )) {
 			echo '';
 		} else {
-			$module = "article";
-			$controller = $to;
-			$exps = explode('-', $to);
-			if(count($exps) > 1){
-				$module = $exps[0];
-				$controller = $exps[1];
-			}
-
-			$bUrl = C ( 'B_DOMAIN_URI' ).$module. "/". $controller ;
-			header ( "Location:{$bUrl}" );
+			header ( "Location:{$to}" );
 		}
 	}
 }

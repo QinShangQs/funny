@@ -16,10 +16,16 @@ class VideoController extends Controller {
     }
 
     public function index() {
+    	$vid = I('vid','');
+    	$videos = C('VIDEOS');
+    	$video = !empty($videos[$vid]) ? $videos[$vid]: $videos[0];
+		unset($videos[$video['vid']]);
+    	
         $city = $this->_getCity();
-
-        $this->assign('title', $city . '高中生被殴打退校🌂,4年后的校聚会,全场被吓傻...');
         $this->assign('city', $city);
+        $this->assign('title', $city . $video['title']);
+        $this->assign('video', $video);
+        $this->assign('videos', $videos);
         $this->assign('share_url', C('A_DOMAIN_URL') . ( "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ));
         $this->assign('back_urls', json_encode(C('BACK_URLS')));
         $this->assign('banner_url', C('BANNER_URL'));
