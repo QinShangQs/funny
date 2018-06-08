@@ -16,7 +16,7 @@ class VideoController extends Controller {
     }
 
     public function index() {
-    	$vid = I('vid','');
+    	$vid = I('vid','b0565ov23h8');
     	$videos = C('VIDEOS');
     	$video = !empty($videos[$vid]) ? $videos[$vid]: $videos[0];
 		unset($videos[$video['vid']]);
