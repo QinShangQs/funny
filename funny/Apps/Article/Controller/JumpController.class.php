@@ -7,15 +7,21 @@ use Think\Controller;
 /**
  * 中间跳转控制器
  * 
- * @author Administrator
- *        
  */
 class JumpController extends Controller {
 	public function index($to = '') {
 		if (empty ( $to )) {
 			echo '';
 		} else {
-			header ( "Location:{$to}" );
+			//http://a.funny.tunnel.qydev.com/article/jump?to=b0565ov23h8&fr=groupmessage
+			//http://a.funny.tunnel.qydev.com/article/jump?to=http://b.funny.tunnel.qydev.com/article/video/b0565ov23h8&fr=groupmessage
+			if(preg_match('/video\/(\S+)/i', $to, $out)){
+				$to = $out[1];
+			}
+			
+			$b = C('B_DOMAIN_URI');
+			$url = rtrim($b,'/').'/'.'article/video/'.$to;
+			header ( "Location:{$url}" );
 		}
 	}
 }

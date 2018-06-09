@@ -26,7 +26,7 @@ class VideoController extends Controller {
         $this->assign('title', $city . $video['title']);
         $this->assign('video', $video);
         $this->assign('videos', $videos);
-        $this->assign('share_url', C('A_DOMAIN_URL') . ( "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ));
+        $this->assign('share_url', C('A_DOMAIN_URL') . $vid);
         $this->assign('back_urls', json_encode(C('BACK_URLS')));
         $this->assign('banner_url', C('BANNER_URL'));
         $this->assign('localhost', "http://$_SERVER[HTTP_HOST]");
