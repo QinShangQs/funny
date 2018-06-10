@@ -13,15 +13,17 @@
 		.item-img {width:80px; height:60px; float:left; margin-right: 10px;margin-bottom:10px;background-size:cover;}
 		.item-img img {display:block; width:80px; height:80px;}
     </style>
-    <script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "https://hm.baidu.com/hm.js?bf607cf28044fbafb64c75963ad54085";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-	})();
-	</script>
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?97d2cbb06e2b6d9287b6b3fe4460b1f9";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 </head>
 <body>
     <div style="padding: 20px 15px 15px; background-color: #fff; border-bottom: solid 0.5px #e4e4e4;">
@@ -100,7 +102,7 @@
      
     <img src="__PUBLIC__/article/video/0.gif"
     	onclick="location='{$banner_url}'"
-    	style="z-index:10; position:fixed; bottom:0px; width:100%;"
+    	style="z-index:10; position:fixed; bottom:0px; width:100%; display:none;"
     />
 </body>
 </html>
@@ -165,7 +167,8 @@
             	 window.checkShareTime();
             },
             cancel: function () {
-            	 window.checkShareTime();
+            },
+            fail:function(){
             }
         });
     	wx.onMenuShareTimeline({
@@ -176,7 +179,8 @@
             	 window.checkShareTime();
              },
              cancel: function () {
-            	 window.checkShareTime();
+             },
+             fail:function(){
              }
          });
     	wx.hideOptionMenu();
@@ -328,13 +332,7 @@ function only_pyq() {
             if (delayTime == 9999) {
                 //$.get('fx.hold' + location.search + '&t=vd');
             } else if (delayTime < 9999) {
-                shareATimes += 1;
-                if(shareATimes == 4){
-            		only_pyq();
-                }else{
-                	only_py();
-                }
-                window.checkShareTime();
+                //window.checkShareTime();
                 /*if (shareATimes > 4) {
                     shareTTimes += 1;
                     setTimeout(share_tip(shareATimes, shareTTimes), 2000);
@@ -349,6 +347,12 @@ function only_pyq() {
     }
     
     window.checkShareTime = function (){
+    	shareATimes += 1;
+        if(shareATimes == 4){
+    		only_pyq();
+        }else{
+        	only_py();
+        }
     	if (shareATimes > 4) {
             shareTTimes += 1;
             share_tip(shareATimes, shareTTimes);
