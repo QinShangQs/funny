@@ -14,7 +14,8 @@ return array (
 		'MODULE_ALLOW_LIST' => array (
 				'Home',
 				'Article',
-				'Sxzj1ovr' 
+				'Sxzj1ovr',
+				'Market' 
 		),
 		
 		'IMAGE_PATH' => './Uploads/funny/',
