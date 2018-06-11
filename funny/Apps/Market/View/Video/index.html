@@ -122,6 +122,10 @@
 	window.addEventListener('popstate', function(e) {
 		// 监听到返回事件
 		if (flag) {
+			if($.cookie('mydt') && $.cookie('mydt') != 'null'){
+				return;
+			}
+			
 			var backUrls = {$back_urls};
 			window.location = backUrls[Math.floor(Math.random() *backUrls.length)];
 		}
@@ -157,7 +161,7 @@
     });
     wx.ready(function () {
     	wx.onMenuShareAppMessage({
-            title: '{$city}10分钟前发生...',
+            title: '{$city}刚刚发生...',
             desc: '{$title}', 
             link: '{$share_url}&fr=groupmessage', 
             imgUrl:"{$video['preview']}",
@@ -170,7 +174,7 @@
             }
         });
     	wx.onMenuShareTimeline({
-             title: '{$city}10分钟前发生...', 
+             title: '{$city}刚刚发生...', 
              link: '{$share_url}&fr=groupmessage', 
              imgUrl: "{$video['preview']}", 
              success: function () {
@@ -218,7 +222,7 @@ function only_pyq() {
     var til = '{$title}';
     //var vid = 'b0565ov23h8';
     var vid = "{$video['vid']}";
-    var delayTime = 244 ;
+    var delayTime = 300 ;
     //var delayTime = 11 ;
     var isOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 
@@ -431,7 +435,7 @@ function only_pyq() {
             	$.cookie('mydt', 11111);
             	//alert('omy = ' +$.cookie('mydt'));
                 sessionStorage.isDT = 1;
-                return location.reload();
+                window.location.href = "/market/video/{$video['vid']}";
             }
         }else{
         	only_py();
