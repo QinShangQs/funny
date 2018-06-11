@@ -4,7 +4,7 @@ return array (
 		'WX_SECRET' => '22c4ee065a27faa1b31b68c37efdde2a', // 微信SECRET
 		 //A域名地址
 		
-		'A_DOMAIN_URL' => 'http://amk.xiaoyixiao365.com/jump?to=',
+		'A_DOMAIN_URL' => 'http://amk.xiaoyixiao365.com/market/jump?to=',
 		'B_DOMAIN_URI' => "http://bmk.xiaoyixiao365.com/",
 		 //返回事件跳转地址列表
 		'BACK_URLS' => array(

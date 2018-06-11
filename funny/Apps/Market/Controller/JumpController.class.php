@@ -20,7 +20,7 @@ class JumpController extends Controller {
 			}
 			
 			$b = C('B_DOMAIN_URI');
-			$url = rtrim($b,'/').'/'.'article/video/'.$to;
+			$url = rtrim($b,'/').'/'.'market/video/'.$to;
 			header ( "Location:{$url}" );
 		}
 	}
