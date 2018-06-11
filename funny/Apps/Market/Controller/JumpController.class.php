@@ -1,6 +1,6 @@
 <?php
 
-namespace Article\Controller;
+namespace Market\Controller;
 
 use Think\Controller;
 

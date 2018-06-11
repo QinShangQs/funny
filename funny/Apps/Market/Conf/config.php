@@ -1,7 +1,7 @@
 <?php
 return array (
-		'WX_APPID' => '', // 微信APPID
-		'WX_SECRET' => '', // 微信SECRET
+		'WX_APPID' => 'wx70adfededf8da23d', // 微信APPID
+		'WX_SECRET' => '22c4ee065a27faa1b31b68c37efdde2a', // 微信SECRET
 		 //A域名地址
 		
 		'A_DOMAIN_URL' => 'http://amk.xiaoyixiao365.com/jump?to=',
